@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/DungeonMesh.tres" type="MeshLibrary" id=1]
+[ext_resource path="res://levels/objects/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://character/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/objects/TorchWall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://chemistry/ChemistryEngine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/kaykit_dungeon/StoneDark.material" type="Material" id=6]
+
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0.168627, 0.12549, 0.223529, 1 )
+sky_horizon_color = Color( 0.52549, 0.360784, 0.227451, 1 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = ExtResource( 6 )
+size = Vector3( 18, 1, 20 )
+
+[node name="Dungeon" type="Spatial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 18 )
+light_color = Color( 0.968627, 0.803922, 0.545098, 1 )
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="Ceiling" type="MeshInstance" parent="."]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -0.600858, 5.52889, 0.508074 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="ChemistryEngine" parent="." instance=ExtResource( 5 )]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 1 )
+cell_size = Vector3( 1, 2, 1 )
+data = {
+"cells": PoolIntArray( 4, 0, 39, 7, 0, 1441841, 10, 0, 39, 65528, 0, 41, 65534, 0, 39, 7, 5, 1441839, 65527, 5, 1048627, 4, 6, 39, 10, 6, 39, 65528, 6, 40, 65534, 6, 39, 65527, 7, 1048626, 2, 9, 655416, 7, 9, 1441849, 65527, 9, 655417, 65532, 9, 655416, 3, 65527, 655419, 7, 65527, 57, 65527, 65527, 1048633, 65531, 65527, 1611268155, 65535, 65527, 655408, 0, 65529, 1441865, 65527, 65529, 1441842, 4, 65530, 39, 10, 65530, 39, 65528, 65530, 1610612775, 65534, 65530, 39, 7, 65531, 1441839, 65527, 65531, 1441843 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="Door" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.38794, 1.06231, -0.493343 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 1, 0 )
+
+[node name="TorchWall" parent="." instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 1, -4 )
+
+[node name="Burnable" parent="TorchWall" index="2"]
+burning = true
+permanent = true
+
+[node name="TorchWall2" parent="." instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 1, 5 )
+
+[editable path="TorchWall"]
+[editable path="TorchWall/Burnable"]
