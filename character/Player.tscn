@@ -16,16 +16,17 @@ radius = 0.569489
 height = 0.677275
 
 [node name="Player" type="KinematicBody"]
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="KayKit Animated Character" parent="Character" index="0"]
-transform = Transform( 1, -5.96046e-07, -1.34359e-07, -1.34359e-07, 0, -1, 5.96046e-07, 1, 0, 0, 0, 0 )
+transform = Transform( 1, -5.96045e-07, -1.34359e-07, -1.34359e-07, 5.96046e-08, -1, 5.96045e-07, 1, 5.96046e-08, 0, 0, 0 )
 
 [node name="HandRBone" parent="Character/KayKit Animated Character/Skeleton" index="3"]
-transform = Transform( -0.975226, 0.210158, -0.0690523, 0.221132, 0.917822, -0.329695, -0.00591031, -0.336797, -0.941559, -0.40233, 0.161671, -0.235827 )
+transform = Transform( -0.97457, 0.220071, -0.0422165, 0.220857, 0.911483, -0.347011, -0.0378876, -0.347511, -0.93691, -0.415197, 0.15725, -0.24646 )
 
 [node name="AnimationTree" parent="Character" index="2"]
 parameters/playback = SubResource( 1 )
@@ -35,6 +36,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.90
 shape = SubResource( 2 )
 
 [node name="CameraRig" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.659074, 0.851974 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 4 )

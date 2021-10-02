@@ -1300,13 +1300,15 @@ tip_bone = "handSlotRight"
 target_node = NodePath("../PickHand/HandRight/HRTarget")
 
 [node name="HandRBone" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 0.84067, 3.04101e-08, -0.541546, 1.27246e-07, 0.999999, 2.53685e-07, 0.541546, -2.82175e-07, 0.84067, -0.36856, 0.415713, -0.442473 )
+transform = Transform( 0.84067, 3.04101e-08, -0.541546, 1.27246e-07, 0.999999, 2.53685e-07, 0.541546, -2.82175e-07, 0.84067, -0.367467, 0.412965, -0.443643 )
 bone_name = "handSlotRight"
 
 [node name="Position3D" type="Position3D" parent="KayKit Animated Character/Skeleton/HandRBone"]
 transform = Transform( -0.972215, 0.0452843, -0.229668, 0.20583, 0.632684, -0.746555, 0.1115, -0.773085, -0.624426, 0.0515911, -0.0121873, -0.00662555 )
 
 [node name="PickHand" type="Area" parent="KayKit Animated Character/Skeleton"]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KayKit Animated Character/Skeleton/PickHand"]
