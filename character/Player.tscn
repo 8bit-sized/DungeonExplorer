@@ -25,7 +25,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 transform = Transform( 1, -5.96046e-07, -1.34359e-07, -1.34359e-07, 0, -1, 5.96046e-07, 1, 0, 0, 0, 0 )
 
 [node name="HandRBone" parent="Character/KayKit Animated Character/Skeleton" index="3"]
-transform = Transform( -0.974305, 0.222337, -0.0360034, 0.220649, 0.91011, -0.350729, -0.0452134, -0.349662, -0.935784, -0.418141, 0.156253, -0.248913 )
+transform = Transform( -0.975226, 0.210158, -0.0690523, 0.221132, 0.917822, -0.329695, -0.00591031, -0.336797, -0.941559, -0.40233, 0.161671, -0.235827 )
 
 [node name="AnimationTree" parent="Character" index="2"]
 parameters/playback = SubResource( 1 )

@@ -1300,7 +1300,7 @@ tip_bone = "handSlotRight"
 target_node = NodePath("../PickHand/HandRight/HRTarget")
 
 [node name="HandRBone" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 0.84067, 3.04101e-08, -0.541546, 1.27246e-07, 0.999999, 2.53685e-07, 0.541546, -2.82175e-07, 0.84067, -0.367467, 0.412965, -0.443643 )
+transform = Transform( 0.84067, 3.04101e-08, -0.541546, 1.27246e-07, 0.999999, 2.53685e-07, 0.541546, -2.82175e-07, 0.84067, -0.36856, 0.415713, -0.442473 )
 bone_name = "handSlotRight"
 
 [node name="Position3D" type="Position3D" parent="KayKit Animated Character/Skeleton/HandRBone"]

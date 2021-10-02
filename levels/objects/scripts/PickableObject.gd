@@ -31,13 +31,18 @@ func _process(delta: float) -> void:
 func get_picked_by(picker: Spatial) -> void:
 	_target = picker
 	mode = MODE_KINEMATIC
-	$CollisionShape.disabled = true
-	$CollisionShape2.disabled = true
+	toggle_collision(false)
 
 func get_thrown(impulse: Vector3) -> void:
 	#impulse (direction and strength)
 	_target = null
 	mode = MODE_RIGID
 	apply_central_impulse(impulse)
-	$CollisionShape.disabled = false
-	$CollisionShape2.disabled = false
+	toggle_collision(true)
+
+# this doesn't make a lot of sense as I could not work with weapons or I need something else to deal damage, maybe area?
+func toggle_collision(on: bool) -> void:
+	var disabled = not on
+	for c in get_children():
+		if c is CollisionShape:
+			c.disabled = disabled
