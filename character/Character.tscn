@@ -1,7 +1,8 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://assets/kaykit_dungeon/character_meshes/body_rogue.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/kaykit_dungeon/character_meshes/head_rogue_d.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://levels/objects/scripts/PickHand.gd" type="Script" id=3]
 [ext_resource path="res://character/Character.gd" type="Script" id=7]
 
 [sub_resource type="Skin" id=1]
@@ -26,8 +27,85 @@ bind/5/name = "handSlotRight"
 bind/5/bone = -1
 bind/5/pose = Transform( -1, 1.93964e-07, -5.96047e-07, -2.63419e-07, 1.35775e-06, 1, 3.72778e-07, 1, -7.14621e-07, -0.4, 7.69434e-10, -0.205887 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Attack(1h)|"
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.403186
+height = 0.629131
+
+[sub_resource type="Animation" id=71]
+resource_name = "throw"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("HandRight:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.902134, 0.498819, -0.329737 ), Vector3( -0.412212, 0.498819, -0.394946 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandRight:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3.4151e-06, 3.25689e-12, 0 ), Vector3( -2.03556e-13, 1.62845e-12, -3.25689e-12 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "release_object"
+}, {
+"args": [  ],
+"method": "reset_hand"
+} ]
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "throw_charge"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("HandRight:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.412212, 0.498819, -0.394946 ), Vector3( -0.902134, 0.498819, -0.329737 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandRight:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.03556e-13, 1.62845e-12, -3.25689e-12 ), Vector3( -3.4151e-06, 3.25689e-12, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.866667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -79,8 +157,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 0.866667, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "KayKit Animated Character|KayKit Animated Character|BasePose|Ka"
+[sub_resource type="Animation" id=4]
 length = 0.0666667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -132,8 +209,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 0.0666667, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Block|KayKi"
+[sub_resource type="Animation" id=5]
 length = 1.46667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -185,8 +261,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.46667, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Cheer|KayKi"
+[sub_resource type="Animation" id=6]
 length = 1.56667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -238,8 +313,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.56667, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Climbing|Ka"
+[sub_resource type="Animation" id=7]
 length = 1.63333
 loop = true
 tracks/0/type = "transform"
@@ -292,8 +366,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.63333, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Defeat|KayK"
+[sub_resource type="Animation" id=8]
 length = 0.8
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -345,8 +418,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 0.8, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=8]
-resource_name = "KayKit Animated Character|KayKit Animated Character|HeavyAttack"
+[sub_resource type="Animation" id=9]
 length = 1.1
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -398,8 +470,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.1, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=9]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Hop|KayKit "
+[sub_resource type="Animation" id=10]
 length = 0.833333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -451,8 +522,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 0.833333, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=10]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Idle|KayKit"
+[sub_resource type="Animation" id=11]
 length = 1.36667
 loop = true
 tracks/0/type = "transform"
@@ -505,8 +575,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.36667, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=11]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Jump|KayKit"
+[sub_resource type="Animation" id=12]
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -558,8 +627,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.33333, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=12]
-resource_name = "KayKit Animated Character|KayKit Animated Character|LayingDownI"
+[sub_resource type="Animation" id=13]
 length = 1.36667
 loop = true
 tracks/0/type = "transform"
@@ -612,8 +680,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.36667, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=13]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Run|KayKit "
+[sub_resource type="Animation" id=14]
 length = 0.833333
 loop = true
 tracks/0/type = "transform"
@@ -666,8 +733,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 0.833333, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=14]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Shoot(1h)|K"
+[sub_resource type="Animation" id=15]
 length = 1.16667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -719,8 +785,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.16667, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=15]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Shoot(2h)|K"
+[sub_resource type="Animation" id=16]
 length = 0.8
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -772,8 +837,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 0.8, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=16]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Shooting(1h"
+[sub_resource type="Animation" id=17]
 length = 1.83333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -825,8 +889,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.83333, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=17]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Shooting(2h"
+[sub_resource type="Animation" id=18]
 length = 1.6
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -878,8 +941,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.6, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=18]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Walk|KayKit"
+[sub_resource type="Animation" id=19]
 length = 1.1
 loop = true
 tracks/0/type = "transform"
@@ -932,8 +994,7 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.1, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=19]
-resource_name = "KayKit Animated Character|KayKit Animated Character|Wave|KayKit"
+[sub_resource type="Animation" id=20]
 length = 1.53333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
@@ -985,154 +1046,152 @@ tracks/6/imported = true
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.53333, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "KayKit Animated Character|KayKit Animated Character|Idle|KayKit"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "KayKit Animated Character|KayKit Animated Character|Attack(1h)|"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "KayKit Animated Character|KayKit Animated Character|Block|KayKi"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "KayKit Animated Character|KayKit Animated Character|Cheer|KayKi"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "KayKit Animated Character|KayKit Animated Character|Climbing|Ka"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "KayKit Animated Character|KayKit Animated Character|Defeat|KayK"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "KayKit Animated Character|KayKit Animated Character|HeavyAttack"
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "KayKit Animated Character|KayKit Animated Character|Hop|KayKit "
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "KayKit Animated Character|KayKit Animated Character|Jump|KayKit"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=30]
 animation = "KayKit Animated Character|KayKit Animated Character|LayingDownI"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=31]
 animation = "KayKit Animated Character|KayKit Animated Character|Walk|KayKit"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=32]
 animation = "KayKit Animated Character|KayKit Animated Character|Run|KayKit "
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=32]
-blend_point_0/node = SubResource( 30 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=33]
+blend_point_0/node = SubResource( 31 )
 blend_point_0/pos = 0.519746
-blend_point_1/node = SubResource( 31 )
+blend_point_1/node = SubResource( 32 )
 blend_point_1/pos = 0.6
 min_space = 0.0
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=34]
 animation = "KayKit Animated Character|KayKit Animated Character|Shooting(1h"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "KayKit Animated Character|KayKit Animated Character|Shooting(2h"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "KayKit Animated Character|KayKit Animated Character|Shoot(1h)|K"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "KayKit Animated Character|KayKit Animated Character|Shoot(2h)|K"
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=38]
 animation = "KayKit Animated Character|KayKit Animated Character|Wave|KayKit"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-xfade_time = 3.0
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
-switch_mode = 2
-auto_advance = true
 xfade_time = 3.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
-xfade_time = 3.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
 switch_mode = 2
 auto_advance = true
 xfade_time = 3.0
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+xfade_time = 3.0
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
-xfade_time = 1.5
+switch_mode = 2
+auto_advance = true
+xfade_time = 3.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
 xfade_time = 1.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=44]
+xfade_time = 1.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=45]
-xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=46]
-xfade_time = 1.0
+xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=48]
+xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=49]
-switch_mode = 2
-auto_advance = true
-xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=51]
-switch_mode = 2
-auto_advance = true
-xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=52]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=53]
-switch_mode = 2
-auto_advance = true
-xfade_time = 5.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
+switch_mode = 2
+auto_advance = true
+xfade_time = 5.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
-switch_mode = 2
-auto_advance = true
-xfade_time = 5.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
+switch_mode = 2
+auto_advance = true
+xfade_time = 5.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
-switch_mode = 2
-auto_advance = true
-xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=58]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
 switch_mode = 2
 auto_advance = true
 xfade_time = 0.5
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=60]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=61]
-switch_mode = 2
-auto_advance = true
-xfade_time = 5.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=62]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=63]
 switch_mode = 2
 auto_advance = true
 xfade_time = 5.0
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=64]
+switch_mode = 2
+auto_advance = true
+xfade_time = 5.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=65]
 
@@ -1140,44 +1199,46 @@ xfade_time = 5.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=67]
 
-[sub_resource type="AnimationNodeStateMachine" id=68]
-states/Idle/node = SubResource( 20 )
-states/Idle/position = Vector2( 230, 74 )
-states/attack/node = SubResource( 21 )
-states/attack/position = Vector2( 290.942, 387 )
-states/block/node = SubResource( 22 )
-states/block/position = Vector2( 146, 387 )
-states/cheer/node = SubResource( 23 )
-states/cheer/position = Vector2( -44.0774, 155 )
-states/climb/node = SubResource( 24 )
-states/climb/position = Vector2( 30, 323 )
-states/defeat/node = SubResource( 25 )
-states/defeat/position = Vector2( -44.0774, -18 )
-states/heavy_attack/node = SubResource( 26 )
-states/heavy_attack/position = Vector2( 422.942, 331 )
-states/hop/node = SubResource( 27 )
-states/hop/position = Vector2( 585.923, -66 )
-states/jump/node = SubResource( 28 )
-states/jump/position = Vector2( 98, -66 )
-states/laying_down/node = SubResource( 29 )
-states/laying_down/position = Vector2( -44.0774, 74 )
-states/move_ground/node = SubResource( 32 )
-states/move_ground/position = Vector2( 354.942, -78.6913 )
-states/shooting1h/node = SubResource( 33 )
-states/shooting1h/position = Vector2( 597.942, 61 )
-states/shooting2h/node = SubResource( 34 )
-states/shooting2h/position = Vector2( 590.942, 214 )
-states/shot1h/node = SubResource( 35 )
-states/shot1h/position = Vector2( 614.942, 140 )
-states/shot2h/node = SubResource( 36 )
-states/shot2h/position = Vector2( 513.942, 273 )
-states/wave/node = SubResource( 37 )
-states/wave/position = Vector2( -30, 240 )
-transitions = [ "Idle", "wave", SubResource( 38 ), "wave", "Idle", SubResource( 39 ), "Idle", "cheer", SubResource( 40 ), "cheer", "Idle", SubResource( 41 ), "Idle", "laying_down", SubResource( 42 ), "laying_down", "Idle", SubResource( 43 ), "Idle", "defeat", SubResource( 44 ), "defeat", "laying_down", SubResource( 45 ), "Idle", "climb", SubResource( 46 ), "climb", "Idle", SubResource( 47 ), "Idle", "jump", SubResource( 48 ), "jump", "Idle", SubResource( 49 ), "Idle", "block", SubResource( 50 ), "block", "Idle", SubResource( 51 ), "Idle", "shot1h", SubResource( 52 ), "shot1h", "Idle", SubResource( 53 ), "Idle", "shot2h", SubResource( 54 ), "shot2h", "Idle", SubResource( 55 ), "Idle", "attack", SubResource( 56 ), "attack", "Idle", SubResource( 57 ), "Idle", "heavy_attack", SubResource( 58 ), "heavy_attack", "Idle", SubResource( 59 ), "Idle", "shooting2h", SubResource( 60 ), "shooting2h", "Idle", SubResource( 61 ), "Idle", "shooting1h", SubResource( 62 ), "shooting1h", "Idle", SubResource( 63 ), "Idle", "move_ground", SubResource( 64 ), "move_ground", "Idle", SubResource( 65 ), "move_ground", "hop", SubResource( 66 ), "hop", "move_ground", SubResource( 67 ) ]
-start_node = "Idle"
-graph_offset = Vector2( 17.9418, -135.691 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=69]
+[sub_resource type="AnimationNodeStateMachine" id=69]
+states/Idle/node = SubResource( 21 )
+states/Idle/position = Vector2( 230, 74 )
+states/attack/node = SubResource( 22 )
+states/attack/position = Vector2( 290.942, 387 )
+states/block/node = SubResource( 23 )
+states/block/position = Vector2( 146, 387 )
+states/cheer/node = SubResource( 24 )
+states/cheer/position = Vector2( -44.0774, 155 )
+states/climb/node = SubResource( 25 )
+states/climb/position = Vector2( 30, 323 )
+states/defeat/node = SubResource( 26 )
+states/defeat/position = Vector2( -44.0774, -18 )
+states/heavy_attack/node = SubResource( 27 )
+states/heavy_attack/position = Vector2( 422.942, 331 )
+states/hop/node = SubResource( 28 )
+states/hop/position = Vector2( 585.923, -66 )
+states/jump/node = SubResource( 29 )
+states/jump/position = Vector2( 98, -66 )
+states/laying_down/node = SubResource( 30 )
+states/laying_down/position = Vector2( -44.0774, 74 )
+states/move_ground/node = SubResource( 33 )
+states/move_ground/position = Vector2( 354.942, -78.6913 )
+states/shooting1h/node = SubResource( 34 )
+states/shooting1h/position = Vector2( 597.942, 61 )
+states/shooting2h/node = SubResource( 35 )
+states/shooting2h/position = Vector2( 590.942, 214 )
+states/shot1h/node = SubResource( 36 )
+states/shot1h/position = Vector2( 614.942, 140 )
+states/shot2h/node = SubResource( 37 )
+states/shot2h/position = Vector2( 513.942, 273 )
+states/wave/node = SubResource( 38 )
+states/wave/position = Vector2( -30, 240 )
+transitions = [ "Idle", "wave", SubResource( 39 ), "wave", "Idle", SubResource( 40 ), "Idle", "cheer", SubResource( 41 ), "cheer", "Idle", SubResource( 42 ), "Idle", "laying_down", SubResource( 43 ), "laying_down", "Idle", SubResource( 44 ), "Idle", "defeat", SubResource( 45 ), "defeat", "laying_down", SubResource( 46 ), "Idle", "climb", SubResource( 47 ), "climb", "Idle", SubResource( 48 ), "Idle", "jump", SubResource( 49 ), "jump", "Idle", SubResource( 50 ), "Idle", "block", SubResource( 51 ), "block", "Idle", SubResource( 52 ), "Idle", "shot1h", SubResource( 53 ), "shot1h", "Idle", SubResource( 54 ), "Idle", "shot2h", SubResource( 55 ), "shot2h", "Idle", SubResource( 56 ), "Idle", "attack", SubResource( 57 ), "attack", "Idle", SubResource( 58 ), "Idle", "heavy_attack", SubResource( 59 ), "heavy_attack", "Idle", SubResource( 60 ), "Idle", "shooting2h", SubResource( 61 ), "shooting2h", "Idle", SubResource( 62 ), "Idle", "shooting1h", SubResource( 63 ), "shooting1h", "Idle", SubResource( 64 ), "Idle", "move_ground", SubResource( 65 ), "move_ground", "Idle", SubResource( 66 ), "move_ground", "hop", SubResource( 67 ), "hop", "move_ground", SubResource( 68 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -134.601, 221.037 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=70]
 
 [node name="Character" type="Spatial"]
 script = ExtResource( 7 )
@@ -1232,29 +1293,63 @@ material/0 = null
 material/1 = null
 material/2 = null
 
+[node name="HandRIK" type="SkeletonIK" parent="KayKit Animated Character/Skeleton"]
+process_priority = 1
+root_bone = "armRight"
+tip_bone = "handSlotRight"
+target_node = NodePath("../PickHand/HandRight/HRTarget")
+
+[node name="HandRBone" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
+transform = Transform( 0.84067, 3.04101e-08, -0.541546, 1.27246e-07, 0.999999, 2.53685e-07, 0.541546, -2.82175e-07, 0.84067, -0.367467, 0.412965, -0.443643 )
+bone_name = "handSlotRight"
+
+[node name="Position3D" type="Position3D" parent="KayKit Animated Character/Skeleton/HandRBone"]
+transform = Transform( -0.972215, 0.0452843, -0.229668, 0.20583, 0.632684, -0.746555, 0.1115, -0.773085, -0.624426, 0.0515911, -0.0121873, -0.00662555 )
+
+[node name="PickHand" type="Area" parent="KayKit Animated Character/Skeleton"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KayKit Animated Character/Skeleton/PickHand"]
+transform = Transform( 1, -3.97904e-13, -1.49214e-13, 2.84217e-13, 1, -5.96046e-08, 8.52651e-14, 5.96046e-08, 1, -0.412219, 0.615933, -0.626126 )
+shape = SubResource( 2 )
+
+[node name="HandRight" type="Position3D" parent="KayKit Animated Character/Skeleton/PickHand"]
+transform = Transform( 1, 5.68434e-14, 2.84218e-14, -5.68434e-14, 1, 3.55271e-15, -2.84218e-14, -3.55271e-15, 1, -0.412212, 0.498819, -0.394946 )
+
+[node name="HRTarget" type="Position3D" parent="KayKit Animated Character/Skeleton/PickHand/HandRight"]
+transform = Transform( 0.840671, 3.04101e-08, -0.541547, 1.27246e-07, 1, 2.53685e-07, 0.541547, -2.82175e-07, 0.840671, 0, 5.96046e-08, 0 )
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KayKit Animated Character/Skeleton/PickHand"]
+anims/throw = SubResource( 71 )
+anims/throw_charge = SubResource( 72 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/KayKit Animated Character|KayKit Animated Character|Attack(1h)|" = SubResource( 2 )
-"anims/KayKit Animated Character|KayKit Animated Character|BasePose|Ka" = SubResource( 3 )
-"anims/KayKit Animated Character|KayKit Animated Character|Block|KayKi" = SubResource( 4 )
-"anims/KayKit Animated Character|KayKit Animated Character|Cheer|KayKi" = SubResource( 5 )
-"anims/KayKit Animated Character|KayKit Animated Character|Climbing|Ka" = SubResource( 6 )
-"anims/KayKit Animated Character|KayKit Animated Character|Defeat|KayK" = SubResource( 7 )
-"anims/KayKit Animated Character|KayKit Animated Character|HeavyAttack" = SubResource( 8 )
-"anims/KayKit Animated Character|KayKit Animated Character|Hop|KayKit " = SubResource( 9 )
-"anims/KayKit Animated Character|KayKit Animated Character|Idle|KayKit" = SubResource( 10 )
-"anims/KayKit Animated Character|KayKit Animated Character|Jump|KayKit" = SubResource( 11 )
-"anims/KayKit Animated Character|KayKit Animated Character|LayingDownI" = SubResource( 12 )
-"anims/KayKit Animated Character|KayKit Animated Character|Run|KayKit " = SubResource( 13 )
-"anims/KayKit Animated Character|KayKit Animated Character|Shoot(1h)|K" = SubResource( 14 )
-"anims/KayKit Animated Character|KayKit Animated Character|Shoot(2h)|K" = SubResource( 15 )
-"anims/KayKit Animated Character|KayKit Animated Character|Shooting(1h" = SubResource( 16 )
-"anims/KayKit Animated Character|KayKit Animated Character|Shooting(2h" = SubResource( 17 )
-"anims/KayKit Animated Character|KayKit Animated Character|Walk|KayKit" = SubResource( 18 )
-"anims/KayKit Animated Character|KayKit Animated Character|Wave|KayKit" = SubResource( 19 )
+"anims/KayKit Animated Character|KayKit Animated Character|Attack(1h)|" = SubResource( 3 )
+"anims/KayKit Animated Character|KayKit Animated Character|BasePose|Ka" = SubResource( 4 )
+"anims/KayKit Animated Character|KayKit Animated Character|Block|KayKi" = SubResource( 5 )
+"anims/KayKit Animated Character|KayKit Animated Character|Cheer|KayKi" = SubResource( 6 )
+"anims/KayKit Animated Character|KayKit Animated Character|Climbing|Ka" = SubResource( 7 )
+"anims/KayKit Animated Character|KayKit Animated Character|Defeat|KayK" = SubResource( 8 )
+"anims/KayKit Animated Character|KayKit Animated Character|HeavyAttack" = SubResource( 9 )
+"anims/KayKit Animated Character|KayKit Animated Character|Hop|KayKit " = SubResource( 10 )
+"anims/KayKit Animated Character|KayKit Animated Character|Idle|KayKit" = SubResource( 11 )
+"anims/KayKit Animated Character|KayKit Animated Character|Jump|KayKit" = SubResource( 12 )
+"anims/KayKit Animated Character|KayKit Animated Character|LayingDownI" = SubResource( 13 )
+"anims/KayKit Animated Character|KayKit Animated Character|Run|KayKit " = SubResource( 14 )
+"anims/KayKit Animated Character|KayKit Animated Character|Shoot(1h)|K" = SubResource( 15 )
+"anims/KayKit Animated Character|KayKit Animated Character|Shoot(2h)|K" = SubResource( 16 )
+"anims/KayKit Animated Character|KayKit Animated Character|Shooting(1h" = SubResource( 17 )
+"anims/KayKit Animated Character|KayKit Animated Character|Shooting(2h" = SubResource( 18 )
+"anims/KayKit Animated Character|KayKit Animated Character|Walk|KayKit" = SubResource( 19 )
+"anims/KayKit Animated Character|KayKit Animated Character|Wave|KayKit" = SubResource( 20 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 68 )
+tree_root = SubResource( 69 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 69 )
+parameters/playback = SubResource( 70 )
 parameters/move_ground/blend_position = 0.282087
+
+[connection signal="body_entered" from="KayKit Animated Character/Skeleton/PickHand" to="KayKit Animated Character/Skeleton/PickHand" method="_on_PickHand_body_entered"]
+[connection signal="body_exited" from="KayKit Animated Character/Skeleton/PickHand" to="KayKit Animated Character/Skeleton/PickHand" method="_on_PickHand_body_exited"]

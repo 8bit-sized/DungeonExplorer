@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/kaykit_dungeon/BrownDark.material" type="Material" id=1]
 [ext_resource path="res://assets/kaykit_dungeon/Metal.material" type="Material" id=2]
 [ext_resource path="res://assets/kaykit_dungeon/WoodDark.material" type="Material" id=3]
 [ext_resource path="res://levels/objects/scripts/PickableObject.gd" type="Script" id=4]
 [ext_resource path="res://chemistry/Burnable.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/objects/scripts/Highlightable.gd" type="Script" id=6]
+
+[sub_resource type="PhysicsMaterial" id=5]
+absorbent = true
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "torch"
@@ -54,9 +58,12 @@ radius = 0.326696
 height = 0.557855
 
 [sub_resource type="SphereShape" id=3]
-radius = 0.351838
+radius = 0.545214
 
 [node name="Torch" type="RigidBody"]
+collision_layer = 8
+mass = 5.0
+physics_material_override = SubResource( 5 )
 script = ExtResource( 4 )
 
 [node name="torch" type="MeshInstance" parent="."]
@@ -65,6 +72,7 @@ mesh = SubResource( 1 )
 material/0 = null
 material/1 = null
 material/2 = null
+script = ExtResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.491366, 0 )

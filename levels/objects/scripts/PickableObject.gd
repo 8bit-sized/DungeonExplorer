@@ -31,9 +31,13 @@ func _process(delta: float) -> void:
 func get_picked_by(picker: Spatial) -> void:
 	_target = picker
 	mode = MODE_KINEMATIC
+	$CollisionShape.disabled = true
+	$CollisionShape2.disabled = true
 
 func get_thrown(impulse: Vector3) -> void:
 	#impulse (direction and strength)
 	_target = null
 	mode = MODE_RIGID
 	apply_central_impulse(impulse)
+	$CollisionShape.disabled = false
+	$CollisionShape2.disabled = false

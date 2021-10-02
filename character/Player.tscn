@@ -9,9 +9,9 @@
 [ext_resource path="res://character/States/Move.gd" type="Script" id=7]
 [ext_resource path="res://character/States/Run.gd" type="Script" id=8]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=2]
 radius = 0.569489
 height = 0.677275
 
@@ -21,12 +21,18 @@ script = ExtResource( 2 )
 [node name="Character" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
+[node name="KayKit Animated Character" parent="Character" index="0"]
+transform = Transform( 1, -5.96046e-07, -1.34359e-07, -1.34359e-07, 0, -1, 5.96046e-07, 1, 0, 0, 0, 0 )
+
+[node name="HandRBone" parent="Character/KayKit Animated Character/Skeleton" index="3"]
+transform = Transform( -0.974305, 0.222337, -0.0360034, 0.220649, 0.91011, -0.350729, -0.0452134, -0.349662, -0.935784, -0.418141, 0.156253, -0.248913 )
+
 [node name="AnimationTree" parent="Character" index="2"]
-parameters/playback = SubResource( 2 )
+parameters/playback = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.903268, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CameraRig" parent="." instance=ExtResource( 3 )]
 
