@@ -9,8 +9,8 @@ var right_hand : Position3D
 # Throw
 onready var anim_player := $AnimationPlayer
 var strength := 0.0
-export (float, 2.0, 10.0) var strength_speed = 5.0
-export (float, 5.0, 20.0) var max_strength := 10.0
+export (float, 20.0, 100.0) var strength_speed = 5.0
+export (float, 50.0, 200.0) var max_strength := 10.0
 
 func _ready() -> void:
 	yield(owner, "ready")
@@ -38,7 +38,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		anim_player.play('throw_charge')
 
 func release_object() -> void:
-	var dir := global_transform.basis.z.normalized() * strength + Vector3(0,5,0)
+	print(strength)
+	var dir := global_transform.basis.z.normalized() * strength + Vector3(0,8,0)
 	pickable_object.get_thrown(dir)
 	pickable_object = null 
 	picking = false

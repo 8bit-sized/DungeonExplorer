@@ -88,9 +88,9 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/emission_intensity = 2.0
-shader_param/time_scale = 3.0
-shader_param/texture_scale = Vector2( 1, 1 )
+shader_param/emission_intensity = 1.0
+shader_param/time_scale = 1.5
+shader_param/texture_scale = Vector2( 0.5, 0.5 )
 shader_param/edge_softness = 0.401
 shader_param/noise_texture = ExtResource( 2 )
 shader_param/texture_mask = ExtResource( 3 )

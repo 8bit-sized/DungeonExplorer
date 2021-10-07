@@ -22,11 +22,8 @@ script = ExtResource( 2 )
 [node name="Character" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
-[node name="KayKit Animated Character" parent="Character" index="0"]
-transform = Transform( 1, -5.96046e-07, -1.34359e-07, -1.34359e-07, 0, -1, 5.96046e-07, 1, 0, 0, 0, 0 )
-
 [node name="HandRBone" parent="Character/KayKit Animated Character/Skeleton" index="3"]
-transform = Transform( -0.97512, 0.213003, -0.0614107, 0.221155, 0.915712, -0.335498, -0.0152276, -0.340733, -0.940037, -0.406018, 0.160227, -0.238975 )
+transform = Transform( -0.975226, 0.210157, -0.0690559, 0.221132, 0.917823, -0.329692, -0.00590596, -0.336795, -0.941559, -0.402328, 0.161672, -0.235825 )
 
 [node name="AnimationTree" parent="Character" index="2"]
 parameters/playback = SubResource( 1 )
