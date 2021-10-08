@@ -38,8 +38,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		anim_player.play('throw_charge')
 
 func release_object() -> void:
-	print(strength)
-	var dir := global_transform.basis.z.normalized() * strength + Vector3(0,8,0)
+	var dir := global_transform.basis.z.normalized() * strength + Vector3(0,10,0)
+	print(str(global_transform.basis.z.normalized()) + " * " + str(strength)) 
+	print(dir)
 	pickable_object.get_thrown(dir)
 	pickable_object = null 
 	picking = false
