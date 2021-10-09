@@ -1,8 +1,8 @@
 extends Triggerable
 class_name TorchWall
 
-func set_active(new_value: bool) -> void:
-	pass
+func _process(delta: float) -> void:
+	self.active = $Burnable.burning
 
 func get_active() -> bool:
 	return $Burnable.burning
