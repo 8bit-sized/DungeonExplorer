@@ -8,7 +8,7 @@ signal triggered(value)
 
 enum TYPE {LEAF, AND, OR, NOT}
 
-var active := false setget set_active, get_active
+var _active := false #setget set_active, get_active
 export  (TYPE) var type = TYPE.LEAF
 
 var sub_triggers: Array = []
@@ -20,7 +20,7 @@ func _init() -> void:
 func _ready() -> void:
 	for child in get_children():
 		if child.is_in_group("triggerable") :
-			print(name + " -> " + child.name)
+#			print(name + " -> " + child.name)
 			child.connect("triggered", self, "_sub_trigger_updated")
 			sub_triggers.append(child)
 	#I hope they stop at first generation children to ease multilevel triggering rules
@@ -32,40 +32,39 @@ func effect(value: bool) -> void:
 	pass
 
 func _sub_trigger_updated(value: bool) -> void:
-	var is_active = self.active
-	effect(is_active)
-#	emit_signal('triggered', is_active)
+	var is_active = get_active()
+	set_active(is_active) #update state only if there's a change
 
 # I may add a reset, useful for timer effects where I want to reset all triggers
 # I need to be careful to avoid loops, probably I should avoid setters and getters and just use func
 # that way I will have no ambiguity
 
 func set_active(new_value: bool) -> void:
-	if type == TYPE.LEAF and new_value != active:
-		print(name + " changed state: "+ str(new_value))
-		active = new_value
+	if new_value != _active:
+		_active = new_value
+		effect(_active)
 		emit_signal('triggered', new_value)
 
 func get_active() -> bool:
 	match type:
 		TYPE.LEAF:
-			return active
+			return _active
 		TYPE.NOT:
 			if sub_triggers.size() <= 0:
 				return false
-			return !sub_triggers[0].active
+			return !sub_triggers[0].get_active()
 		TYPE.AND:
 			if sub_triggers.size() <= 0:
 				return false
 			var res = true
 			for trig in sub_triggers:
-				res = res and trig.active
+				res = res and trig.get_active()
 			return res
 		TYPE.OR:
 			if sub_triggers.size() <= 0:
 				return false
 			var res = false
 			for trig in sub_triggers:
-				res = res or trig.active
+				res = res or trig.get_active()
 			return res
 	return false
