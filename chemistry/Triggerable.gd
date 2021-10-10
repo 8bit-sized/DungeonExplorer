@@ -23,7 +23,7 @@ func _ready() -> void:
 #			print(name + " -> " + child.name)
 			child.connect("triggered", self, "_sub_trigger_updated")
 			sub_triggers.append(child)
-	#I hope they stop at first generation children to ease multilevel triggering rules
+		_active = get_active() # get initial state, useful when it is on from start (especially for NOT nodes)
 
 func effect(value: bool) -> void:
 	# it could be a single effect or turning process on with a timer or dependent on triggers conditions (flame will turn off on their own, but have no built in timer clock signal
