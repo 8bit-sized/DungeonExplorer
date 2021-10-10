@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://chemistry/ChemistryEngine.gd"
 }, {
+"base": "Triggerable",
+"class": "Door",
+"language": "GDScript",
+"path": "res://levels/objects/scripts/Door.gd"
+}, {
 "base": "Area",
 "class": "Flame",
 "language": "GDScript",
@@ -69,11 +74,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://character/PlayerState.gd"
 }, {
-"base": "Triggerable",
-"class": "Reaction",
-"language": "GDScript",
-"path": "res://levels/objects/scripts/Door.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -105,6 +105,7 @@ _global_script_class_icons={
 "CameraState": "",
 "Character": "",
 "ChemistryEngine": "",
+"Door": "",
 "Flame": "",
 "Highlightable": "",
 "Mannequiny": "",
@@ -112,7 +113,6 @@ _global_script_class_icons={
 "Pickable": "",
 "Player": "",
 "PlayerState": "",
-"Reaction": "",
 "State": "",
 "StateMachine": "",
 "TorchWall": "",

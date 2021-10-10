@@ -1,14 +1,16 @@
 extends Triggerable
-class_name Reaction
+class_name Door
 
-# add reference to trigger node
+onready var anim = $Door/AnimationPlayer
 
 func _ready() -> void:
 	pass # Replace with function body.
 	
 func effect(value: bool) -> void:
-	var rotation = -1.5 if value else 1.5
-	$door.rotate_y(rotation)
+	if value:
+		anim.play('open')
+	else:
+		anim.play('close')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
