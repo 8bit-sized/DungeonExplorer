@@ -33,34 +33,24 @@ func effect(value: bool) -> void:
 
 func _sub_trigger_updated(value: bool, index: int = 0) -> void:
 	if type == TYPE.SEQUENCE:
+		if not value or sequence.size() >= sub_triggers.size():
+			sequence = [] # if flames turns off, empty sequence without other reset
 		if value:
 			sequence.append(index)
-		else:
-			sequence = [] # if flames turns off, empty sequence without other reset
 	var is_active = get_active()
 	set_active(is_active) #update state only if there's a change
 
-func sequence_reset(value: bool) -> void:
-	# add delay for torches to stay on for a while, maybe sfx vfx cues controls
-	if sequence.size() >= sub_triggers.size():
-		print("reset sequence array")
-		sequence = []
-		if not value:
-			yield(get_tree().create_timer(2.0), "timeout")
-			print("Wrong sequence, hard reset triggers")
-			for t in sub_triggers:
-				t.set_active(false)
+func trigger_reset(value: bool) -> void:
+	if not value and sequence.size() >= sub_triggers.size():
+		yield(get_tree().create_timer(2.0), "timeout")
+		for t in sub_triggers:
+			t.set_active(false)
 
 func set_active(new_value: bool) -> void:
 	if new_value != _active:
 		_active = new_value
 		effect(_active)
 		emit_signal('triggered', new_value)
-
-# I could remove leaf type and 
-# consider leaf if no subtrigger is found
-# after testing and commit
-# or maybe first check if I can use it for multi-step puzzles as in Fenyx Rising
 
 func get_active() -> bool:
 	if sub_triggers.size() <= 0:
@@ -78,9 +68,8 @@ func get_active() -> bool:
 			res = true
 			for trig in sub_triggers:
 				res = res and trig.get_active()
-			continue # sequence will fallthrough
+			continue # sequence will fallthrough to next
 		TYPE.SEQUENCE:
-			print(sequence)
 			res = res and (sequence == range(sub_triggers.size()))
-			sequence_reset(res)
+			trigger_reset(res)
 	return res
