@@ -32,6 +32,6 @@ func set_burning(value: bool) -> void:
 	burning = value
 	if burning:
 		elapsed_seconds = 0.0
-	else:
+	elif flame != null: # added check to enable forced disable
 		flame.die() # it will take care of animations
 		flame = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/DungeonMesh.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://levels/objects/Door.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://chemistry/ChemistryEngine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/kaykit_dungeon/StoneDark.material" type="Material" id=6]
 [ext_resource path="res://levels/objects/Torch.tscn" type="PackedScene" id=7]
-[ext_resource path="res://chemistry/Triggerable.gd" type="Script" id=8]
 [ext_resource path="res://levels/objects/Banner.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ProceduralSky" id=1]
@@ -28,13 +27,14 @@ size = Vector3( 18, 1, 20 )
 environment = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
-transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 18 )
+transform = Transform( 0.999999, -0.000374925, 0.00139924, 0, 0.965926, 0.258819, -0.0014486, -0.258819, 0.965925, 0, 2, 18 )
 light_color = Color( 0.968627, 0.803922, 0.545098, 1 )
 light_energy = 0.3
 shadow_enabled = true
 
 [node name="Ceiling" type="MeshInstance" parent="."]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -0.600858, 5.52889, 0.508074 )
+visible = false
 mesh = SubResource( 3 )
 material/0 = null
 
@@ -46,7 +46,7 @@ cell_size = Vector3( 1, 2, 1 )
 collision_layer = 2
 collision_mask = 0
 data = {
-"cells": PoolIntArray( 4, 0, 39, 7, 0, 1441841, 10, 0, 39, 65516, 0, 39, 65522, 0, 39, 65528, 0, 41, 65534, 0, 536870951, 7, 5, 1441839, 65527, 5, 1048627, 4, 6, 39, 10, 6, 39, 65516, 6, 39, 65522, 6, 39, 65528, 6, 40, 65534, 6, 39, 65527, 7, 1048626, 2, 9, 655416, 7, 9, 1441849, 65527, 9, 655417, 65532, 9, 655416, 3, 65527, 655419, 7, 65527, 57, 65527, 65527, 1048633, 65531, 65527, 655419, 65535, 65527, 655408, 0, 65529, 1441865, 65527, 65529, 1441842, 4, 65530, 39, 10, 65530, 39, 65516, 65530, 39, 65522, 65530, 39, 65528, 65530, 39, 65534, 65530, 39, 7, 65531, 1441839, 65527, 65531, 1441843 )
+"cells": PoolIntArray( 4, 0, 39, 7, 0, 1441841, 10, 0, 39, 65516, 0, 39, 65522, 0, 39, 65528, 0, 41, 65534, 0, 39, 7, 5, 1441839, 65527, 5, 1048627, 4, 6, -2147483609, 10, 6, 39, 65516, 6, 39, 65522, 6, 39, 65528, 6, 40, 65534, 6, 39, 65527, 7, 1048626, 2, 9, 655416, 7, 9, 1441849, 65527, 9, 655417, 65532, 9, 655416, 3, 65527, 655419, 7, 65527, 57, 65527, 65527, 1048633, 65531, 65527, 655419, 65535, 65527, -2146828240, 0, 65529, 1441865, 65527, 65529, 1441842, 4, 65530, 39, 10, 65530, 39, 65516, 65530, 39, 65522, 65530, 39, 65528, 65530, 39, 65534, 65530, 39, 7, 65531, 1441839, 65527, 65531, 1441843 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -55,17 +55,16 @@ __meta__ = {
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.38794, 1.06231, -0.493343 )
-type = 1
+type = 4
 
 [node name="TorchWall2" parent="Door" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49334, -0.06231, 0.38794 )
 
-[node name="Not" type="Node" parent="Door"]
-script = ExtResource( 8 )
-type = 3
+[node name="TorchWall3" parent="Door" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.49334, -0.06231, 15.4491 )
 
-[node name="TorchWall3" parent="Door/Not" instance=ExtResource( 4 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.9686, 1, 8.72816 )
+[node name="TorchWall4" parent="Door" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.16993, -0.06231, 15.4491 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 1, 0 )

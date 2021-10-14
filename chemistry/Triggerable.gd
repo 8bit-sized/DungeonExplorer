@@ -6,12 +6,13 @@ class_name Triggerable
 
 signal triggered(value)
 
-enum TYPE {LEAF, AND, OR, NOT}
+enum TYPE {LEAF, AND, OR, NOT, SEQUENCE}
 
 var _active := false #setget set_active, get_active
 export  (TYPE) var type = TYPE.LEAF
 
 var sub_triggers: Array = []
+var sequence: Array = []
 
 func _init() -> void:
 	add_to_group("triggerable")
@@ -20,8 +21,7 @@ func _init() -> void:
 func _ready() -> void:
 	for child in get_children():
 		if child.is_in_group("triggerable") :
-#			print(name + " -> " + child.name)
-			child.connect("triggered", self, "_sub_trigger_updated")
+			child.connect("triggered", self, "_sub_trigger_updated", [sub_triggers.size()])
 			sub_triggers.append(child)
 		_active = get_active() # get initial state, useful when it is on from start (especially for NOT nodes)
 
@@ -31,13 +31,25 @@ func effect(value: bool) -> void:
 	# to be used in root, or maybe I could chain triggers and effects this way?
 	pass
 
-func _sub_trigger_updated(value: bool) -> void:
+func _sub_trigger_updated(value: bool, index: int = 0) -> void:
+	if type == TYPE.SEQUENCE:
+		if value:
+			sequence.append(index)
+		else:
+			sequence = [] # if flames turns off, empty sequence without other reset
 	var is_active = get_active()
 	set_active(is_active) #update state only if there's a change
 
-# I may add a reset, useful for timer effects where I want to reset all triggers
-# I need to be careful to avoid loops, probably I should avoid setters and getters and just use func
-# that way I will have no ambiguity
+func sequence_reset(value: bool) -> void:
+	# add delay for torches to stay on for a while, maybe sfx vfx cues controls
+	if sequence.size() >= sub_triggers.size():
+		print("reset sequence array")
+		sequence = []
+		if not value:
+			yield(get_tree().create_timer(2.0), "timeout")
+			print("Wrong sequence, hard reset triggers")
+			for t in sub_triggers:
+				t.set_active(false)
 
 func set_active(new_value: bool) -> void:
 	if new_value != _active:
@@ -45,26 +57,30 @@ func set_active(new_value: bool) -> void:
 		effect(_active)
 		emit_signal('triggered', new_value)
 
+# I could remove leaf type and 
+# consider leaf if no subtrigger is found
+# after testing and commit
+# or maybe first check if I can use it for multi-step puzzles as in Fenyx Rising
+
 func get_active() -> bool:
+	if sub_triggers.size() <= 0:
+		return false
+	var res = false
 	match type:
 		TYPE.LEAF:
-			return _active
+			res = _active
 		TYPE.NOT:
-			if sub_triggers.size() <= 0:
-				return false
-			return !sub_triggers[0].get_active()
-		TYPE.AND:
-			if sub_triggers.size() <= 0:
-				return false
-			var res = true
-			for trig in sub_triggers:
-				res = res and trig.get_active()
-			return res
-		TYPE.OR:
-			if sub_triggers.size() <= 0:
-				return false
-			var res = false
+			res = !sub_triggers[0].get_active()
+		TYPE.OR: # res already false
 			for trig in sub_triggers:
 				res = res or trig.get_active()
-			return res
-	return false
+		TYPE.AND, TYPE.SEQUENCE:
+			res = true
+			for trig in sub_triggers:
+				res = res and trig.get_active()
+			continue # sequence will fallthrough
+		TYPE.SEQUENCE:
+			print(sequence)
+			res = res and (sequence == range(sub_triggers.size()))
+			sequence_reset(res)
+	return res
