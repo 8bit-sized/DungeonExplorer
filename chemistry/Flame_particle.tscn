@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://shaders/Flame_particle.tres" type="Material" id=1]
+[ext_resource path="res://chemistry/shaders/Flame_particle.tres" type="Material" id=1]
 [ext_resource path="res://assets/2d/FireShader/HoleNoise.png" type="Texture" id=2]
 [ext_resource path="res://assets/2d/FireShader/FireMask.png" type="Texture" id=3]
 
