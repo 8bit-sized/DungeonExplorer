@@ -15,8 +15,6 @@ curve = SubResource( 3 )
 
 [resource]
 lifetime_randomness = 0.81
-emission_shape = 2
-emission_box_extents = Vector3( 1, 1, 0.1 )
 direction = Vector3( 0, 1, 0 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )

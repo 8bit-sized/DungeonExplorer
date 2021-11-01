@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "StaticBody",
+"class": "Bookcase",
+"language": "GDScript",
+"path": "res://levels/objects/scripts/Bookcase.gd"
+}, {
 "base": "Area",
 "class": "Burnable",
 "language": "GDScript",
-"path": "res://chemistry/Burnable.gd"
+"path": "res://chemistry/scripts/Burnable.gd"
 }, {
 "base": "Spatial",
 "class": "CameraRig",
@@ -32,7 +37,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "ChemistryEngine",
 "language": "GDScript",
-"path": "res://chemistry/ChemistryEngine.gd"
+"path": "res://chemistry/scripts/ChemistryEngine.gd"
 }, {
 "base": "Triggerable",
 "class": "Door",
@@ -42,7 +47,7 @@ _global_script_classes=[ {
 "base": "Area",
 "class": "Flame",
 "language": "GDScript",
-"path": "res://chemistry/Flame.gd"
+"path": "res://chemistry/scripts/Flame.gd"
 }, {
 "base": "MeshInstance",
 "class": "Highlightable",
@@ -92,14 +97,10 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Triggerable",
 "language": "GDScript",
-"path": "res://chemistry/Triggerable.gd"
-}, {
-"base": "Area",
-"class": "Water",
-"language": "GDScript",
-"path": "res://chemistry/Water.gd"
+"path": "res://chemistry/scripts/Triggerable.gd"
 } ]
 _global_script_class_icons={
+"Bookcase": "",
 "Burnable": "",
 "CameraRig": "",
 "CameraState": "",
@@ -116,8 +117,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "TorchWall": "",
-"Triggerable": "",
-"Water": ""
+"Triggerable": ""
 }
 
 [application]

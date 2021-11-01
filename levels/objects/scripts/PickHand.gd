@@ -61,3 +61,13 @@ func _on_PickHand_body_exited(body: Node) -> void:
 	if body.is_in_group("pickable") and not picking:
 		body.highlight = false
 		pickable_object = null
+
+
+func _on_PickHand_area_entered(area: Area) -> void:
+	print("Enable object interaction")
+	pass # Replace with function body.
+
+
+func _on_PickHand_area_exited(area: Area) -> void:
+	print("Disable object interaction")
+	pass # Replace with function body.

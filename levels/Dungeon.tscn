@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/DungeonMesh.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://levels/objects/Door.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://chemistry/ChemistryEngine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/kaykit_dungeon/StoneDark.material" type="Material" id=6]
 [ext_resource path="res://levels/objects/Torch.tscn" type="PackedScene" id=7]
+[ext_resource path="res://levels/objects/Bookcase.tscn" type="PackedScene" id=8]
 [ext_resource path="res://levels/objects/Banner.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ProceduralSky" id=1]
@@ -46,7 +47,7 @@ cell_size = Vector3( 1, 2, 1 )
 collision_layer = 2
 collision_mask = 0
 data = {
-"cells": PoolIntArray( 4, 0, 39, 7, 0, 1441841, 10, 0, 39, 65516, 0, 39, 65522, 0, -2147483609, 65528, 0, 41, 65534, 0, 39, 7, 5, 1441839, 65527, 5, 1048627, 4, 6, 39, 10, 6, 39, 65516, 6, 39, 65522, 6, 39, 65528, 6, 40, 65534, 6, 39, 65527, 7, 1048626, 2, 9, 655416, 7, 9, 1441849, 65527, 9, 655417, 65532, 9, 655416, 3, 65527, 655419, 7, 65527, 57, 65527, 65527, 1048633, 65531, 65527, 655419, 65535, 65527, 655408, 0, 65529, 1441865, 65527, 65529, 538312754, 4, 65530, 536870951, 10, 65530, 536870951, 65516, 65530, 536870951, 65522, 65530, 536870951, 65528, 65530, 39, 65534, 65530, 39, 7, 65531, 1441839, 65527, 65531, 1441843 )
+"cells": PoolIntArray( 4, 0, 39, 7, 0, 1441841, 10, 0, 39, 16, 0, -1609957340, 22, 0, -1609957337, 65516, 0, 39, 65522, 0, 39, 65528, 0, 41, 65534, 0, 39, 25, 1, 538312751, 7, 5, 1441839, 25, 5, 538312751, 65527, 5, 1048627, 4, 6, 39, 10, 6, 39, 16, 6, -1609957340, 22, 6, -1609957335, 65516, 6, 39, 65522, 6, 39, 65528, 6, 40, 65534, 6, 39, 65527, 7, 1048626, 2, 9, 655416, 7, 9, -1609957306, 11, 9, 655418, 16, 9, 537526321, 21, 9, 537526330, 25, 9, 655420, 65527, 9, 655417, 65532, 9, 655416, 3, 65527, -2146828229, 7, 65527, 1073741894, 11, 65527, 655419, 16, 65527, -1609957327, 21, 65527, 537526331, 25, 65527, -2146828228, 65527, 65527, 1048633, 65531, 65527, -2146828229, 65535, 65527, 655408, 0, 65529, 1441865, 65527, 65529, 1441842, 4, 65530, 39, 10, 65530, 39, 16, 65530, 655396, 22, 65530, 537526311, 65516, 65530, -2147483609, 65522, 65530, 39, 65528, 65530, 39, 65534, 65530, 39, 7, 65531, 1441839, 65527, 65531, 1441843, 25, 65532, 538312753 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -58,13 +59,21 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.38794
 type = 4
 
 [node name="TorchWall2" parent="Door" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49334, -0.06231, 0.38794 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49334, -0.06231, 0.387941 )
 
 [node name="TorchWall3" parent="Door" instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.49334, -0.06231, 15.4491 )
 
 [node name="TorchWall4" parent="Door" instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.16993, -0.06231, 15.4491 )
+
+[node name="Door2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 15.5125, 1.06231, -9.05902 )
+type = 4
+
+[node name="Door3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 15.5125, 1.06231, 8.97631 )
+type = 4
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 1, 0 )
@@ -76,11 +85,33 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 1, -
 burning = true
 permanent = true
 
+[node name="TorchWall2" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4694, 1, 8.69022 )
+
+[node name="Burnable" parent="TorchWall2" index="2"]
+burning = true
+permanent = true
+
+[node name="TorchWall3" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 21.4346, 1, 8.69022 )
+
+[node name="Burnable" parent="TorchWall3" index="2"]
+burning = true
+permanent = true
+
 [node name="Torch" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 0.137393, 0.990517, 0, -0.990517, 0.137393, 0, 1.20922, 0 )
 
 [node name="Banner" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.465463, 2.45741, -7.86024 )
 
+[node name="Bookcase" parent="." instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.55335, 1.00181, 3.45189 )
+filled = true
+
 [editable path="TorchWall"]
 [editable path="TorchWall/Burnable"]
+[editable path="TorchWall2"]
+[editable path="TorchWall2/Burnable"]
+[editable path="TorchWall3"]
+[editable path="TorchWall3/Burnable"]

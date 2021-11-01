@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/kaykit_dungeon/object_meshes/book_case.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/kaykit_dungeon/object_meshes/book_case_filled.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/kaykit_dungeon/object_meshes/book_case_filled_broken.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/kaykit_dungeon/object_meshes/book_case_broken.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://levels/objects/scripts/Bookcase.gd" type="Script" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1, 0.268173 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.79704, 0.765823, 0.439944 )
+
+[node name="Bookcase" type="StaticBody"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 5 )
+
+[node name="case" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="broken" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 4 )
+material/0 = null
+
+[node name="filled" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 2 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+
+[node name="broken_filled" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00208, 0 )
+shape = SubResource( 1 )
+
+[node name="Interaction" type="Area" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape" type="CollisionShape" parent="Interaction"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.006, 0 )
+shape = SubResource( 2 )
