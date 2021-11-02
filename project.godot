@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "Triggerable",
 "class": "TorchWall",
 "language": "GDScript",
-"path": "res://levels/objects/TorchWall.gd"
+"path": "res://levels/objects/scripts/TorchWall.gd"
 }, {
 "base": "Node",
 "class": "Triggerable",

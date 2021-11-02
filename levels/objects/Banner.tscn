@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/kaykit_dungeon/BlueDark.material" type="Material" id=2]
 [ext_resource path="res://assets/kaykit_dungeon/BlueLight.material" type="Material" id=3]
 [ext_resource path="res://chemistry/Burnable.tscn" type="PackedScene" id=4]
-[ext_resource path="res://levels/objects/Banner.gd" type="Script" id=5]
+[ext_resource path="res://levels/objects/scripts/Banner.gd" type="Script" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "banner"

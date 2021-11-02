@@ -47,7 +47,7 @@ func set_active(new_value: bool) -> void:
 		emit_signal('triggered', new_value)
 
 func get_active() -> bool:
-	if sub_triggers.size() <= 0:
+	if sub_triggers.size() <= 0 and type != TYPE.LEAF:
 		return false
 	var res = false
 	match type:

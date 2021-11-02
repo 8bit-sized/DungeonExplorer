@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/kaykit_dungeon/BrownDark.material" type="Material" id=3]
 [ext_resource path="res://assets/kaykit_dungeon/Metal.material" type="Material" id=4]
 [ext_resource path="res://chemistry/Burnable.tscn" type="PackedScene" id=5]
-[ext_resource path="res://levels/objects/TorchWall.gd" type="Script" id=6]
+[ext_resource path="res://levels/objects/scripts/TorchWall.gd" type="Script" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "torchWall"
@@ -85,5 +85,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69705, 0.916064 )
 [node name="CollisionShape" parent="Burnable" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0671058, 0.0239663 )
 shape = SubResource( 3 )
+
+[connection signal="burnt_down" from="Burnable" to="." method="_on_Burnable_burnt_down"]
+[connection signal="start_fire" from="Burnable" to="." method="_on_Burnable_start_fire"]
 
 [editable path="Burnable"]
