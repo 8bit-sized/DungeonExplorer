@@ -11,13 +11,14 @@ This repository makes use of some external resources, I list them here.
 - Player movement and camera work are from [GDQuest - Godot 3D Mannequin](https://github.com/GDQuest/godot-3d-mannequin)
   - `/main/StateMachine/` and its content
   - `/caracter/` and all of its content (*some tweaks were made to adapt it to different assets*)
+  - `/assets/2d/reticles.png`
 
 - Fire shader and particle is from [GDQuest - Godot Shaders](https://github.com/GDQuest/godot-shaders)
-  -  `chemistry/Flame.tscn`
-  -  `chemistry/particles/flame_point.tres`
-  -  `chemistry/particles/flame_panel.tres`
-  -  `chemistry/shaders/Flame_particle.gdshader`
-  -  `assets/2d/Fireshader/` and its content
+  -  `/chemistry/Flame.tscn`
+  -  `/chemistry/particles/flame_point.tres`
+  -  `/chemistry/particles/flame_panel.tres`
+  -  `/chemistry/shaders/Flame_particle.gdshader`
+  -  `/assets/2d/Fireshader/` and its content
 
 - Dungeon and character assets are from [KayKit - Dungeon Pack](https://kaylousberg.itch.io/kaykit-dungeon)
 
