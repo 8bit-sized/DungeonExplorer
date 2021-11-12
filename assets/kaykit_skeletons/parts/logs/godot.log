@@ -1,0 +1,18 @@
+Godot Engine v3.4.stable.official.206ba70f4 - https://godotengine.org
+OpenGL ES 3.0 Renderer: AMD Radeon Pro W5500 (NAVI14, DRM 3.35.0, 5.4.0-90-lowlatency, LLVM 12.0.0)
+OpenGL ES Batching: ON
+ 
+ERROR: Cannot open file 'res://assets/kaykit_skeletons/Metal.material'.
+   at: load_interactive (core/io/resource_format_binary.cpp:939) - Condition "err != OK" is true. Returned: Ref<ResourceInteractiveLoader>()
+ERROR: Failed loading resource: res://assets/kaykit_skeletons/Metal.material. Make sure resources have been imported by opening the project in the editor at least once.
+   at: _load (core/io/resource_loader.cpp:270) - Condition "found" is true. Returned: RES()
+ERROR: res://archer_body.tres:3 - Parse Error: [ext_resource] referenced nonexistent resource at: res://assets/kaykit_skeletons/Metal.material
+   at: poll (scene/resources/resource_format_text.cpp:412) - res://archer_body.tres:3 - Parse Error: [ext_resource] referenced nonexistent resource at: res://assets/kaykit_skeletons/Metal.material
+ERROR: Failed to load resource 'res://archer_body.tres'.
+   at: load (core/io/resource_loader.cpp:206) - Condition "err != OK" is true. Returned: RES()
+ERROR: Failed loading resource: res://archer_body.tres. Make sure resources have been imported by opening the project in the editor at least once.
+   at: _load (core/io/resource_loader.cpp:270) - Condition "found" is true. Returned: RES()
+ERROR: Failed loading scene: res://archer_body.tres
+   at: start (main/main.cpp:1998) - Condition "!scene" is true. Returned: false
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object.cpp:2064) - ObjectDB instances leaked at exit (run with --verbose for details).
