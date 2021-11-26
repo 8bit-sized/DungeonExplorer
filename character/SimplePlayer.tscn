@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://character/BaseCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://character/SimplePlayer.gd" type="Script" id=2]
+[ext_resource path="res://character/SimpleCameraRig.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.493202
+height = 0.665018
+
+[sub_resource type="CapsuleShape" id=2]
+
+[node name="SimplePlayer" type="KinematicBody"]
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="BaseCharacter" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.81828, 0.0047822 )
+shape = SubResource( 1 )
+
+[node name="SimpleCameraRig" type="Position3D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Pitch" type="Position3D" parent="SimpleCameraRig"]
+
+[node name="SpringArm" type="SpringArm" parent="SimpleCameraRig/Pitch"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18182, 2.42498 )
+collision_mask = 2
+shape = SubResource( 2 )
+margin = 0.02
+
+[node name="Camera" type="Camera" parent="SimpleCameraRig/Pitch/SpringArm"]
+transform = Transform( 1, 0, 0, 0, 0.925289, 0.379262, 0, -0.379262, 0.925289, 0, 0, 1.36782 )
+current = true
