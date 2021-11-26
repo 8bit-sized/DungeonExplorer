@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "CharacterHead",
 "language": "GDScript",
-"path": "res://assets/kaykit_skeletons/parts/Skull.gd"
+"path": "res://assets/kaykit/parts/Skull.gd"
 }, {
 "base": "Spatial",
 "class": "ChemistryEngine",
@@ -89,6 +89,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://character/PlayerState.gd"
 }, {
+"base": "Position3D",
+"class": "SimpleCameraRig",
+"language": "GDScript",
+"path": "res://character/SimpleCameraRig.gd"
+}, {
+"base": "KinematicBody",
+"class": "SimplePlayer",
+"language": "GDScript",
+"path": "res://character/SimplePlayer.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -126,6 +136,8 @@ _global_script_class_icons={
 "Pickable": "",
 "Player": "",
 "PlayerState": "",
+"SimpleCameraRig": "",
+"SimplePlayer": "",
 "State": "",
 "StateMachine": "",
 "TorchWall": "",

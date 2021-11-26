@@ -1,11 +1,12 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://assets/PrototypePete.material" type="Material" id=1]
-[ext_resource path="res://assets/kaykit_skeletons/parts/Skull.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/kaykit_skeletons/parts/skeleton_archer_left_arm.tres" type="ArrayMesh" id=3]
-[ext_resource path="res://assets/kaykit_skeletons/parts/warrior_body.tres" type="ArrayMesh" id=4]
-[ext_resource path="res://assets/kaykit_skeletons/parts/archer_right_arm.tres" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/kaykit/parts/Skull.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/kaykit/parts/skeleton_minion_right_arm.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/kaykit/parts/skeleton_minion_body.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/kaykit/parts/skeleton_minion_left_arm.tres" type="ArrayMesh" id=5]
 [ext_resource path="res://character/BaseCharacter.gd" type="Script" id=6]
+[ext_resource path="res://assets/kaykit/parts/cape_mage.tres" type="ArrayMesh" id=7]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "base_character_PrototypePete_body"
@@ -579,6 +580,7 @@ tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-0
 [sub_resource type="Animation" id=13]
 resource_name = "KayKit Animated Character|KayKit Animated Character|LayingDownI"
 length = 1.36667
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KayKit Animated Character/Skeleton:Head")
 tracks/0/interp = 1
@@ -1002,9 +1004,186 @@ tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1, 1.53333, 1, 0, 0, 0, 0.707107, -2.58237e-07, 1.63231e-07, 0.707107, 1, 1, 1 )
 
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "KayKit Animated Character|KayKit Animated Character|Attack(1h)|"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "KayKit Animated Character|KayKit Animated Character|Block|KayKi"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "KayKit Animated Character|KayKit Animated Character|Cheer|KayKi"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "KayKit Animated Character|KayKit Animated Character|Climbing|Ka"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "KayKit Animated Character|KayKit Animated Character|Defeat|KayK"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "KayKit Animated Character|KayKit Animated Character|HeavyAttack"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "KayKit Animated Character|KayKit Animated Character|Hop|KayKit "
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "KayKit Animated Character|KayKit Animated Character|Idle|KayKit"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "KayKit Animated Character|KayKit Animated Character|Jump|KayKit"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "KayKit Animated Character|KayKit Animated Character|LayingDownI"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "KayKit Animated Character|KayKit Animated Character|Walk|KayKit"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "KayKit Animated Character|KayKit Animated Character|Run|KayKit "
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=33]
+blend_point_0/node = SubResource( 31 )
+blend_point_0/pos = 0.1
+blend_point_1/node = SubResource( 32 )
+blend_point_1/pos = 0.7
+min_space = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=53]
+animation = "KayKit Animated Character|KayKit Animated Character|Shoot(1h)|K"
+
+[sub_resource type="AnimationNodeAnimation" id=54]
+animation = "KayKit Animated Character|KayKit Animated Character|Shoot(2h)|K"
+
+[sub_resource type="AnimationNodeAnimation" id=55]
+animation = "KayKit Animated Character|KayKit Animated Character|Shooting(2h"
+
+[sub_resource type="AnimationNodeAnimation" id=56]
+animation = "KayKit Animated Character|KayKit Animated Character|Shooting(1h"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=57]
+blend_point_0/node = SubResource( 53 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 54 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 55 )
+blend_point_2/pos = Vector2( 1, 1 )
+blend_point_3/node = SubResource( 56 )
+blend_point_3/pos = Vector2( 0, 1 )
+min_space = Vector2( 0, 0 )
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "KayKit Animated Character|KayKit Animated Character|Wave|KayKit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+switch_mode = 2
+auto_advance = true
+xfade_time = 2.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachine" id=45]
+states/Attack_1/node = SubResource( 21 )
+states/Attack_1/position = Vector2( 941, 51 )
+states/Block/node = SubResource( 22 )
+states/Block/position = Vector2( 873, -52 )
+states/Cheer/node = SubResource( 23 )
+states/Cheer/position = Vector2( 307, 213 )
+states/Climbing/node = SubResource( 24 )
+states/Climbing/position = Vector2( 563, 304 )
+states/Defeat/node = SubResource( 25 )
+states/Defeat/position = Vector2( 342, 0 )
+states/HeavyAttack/node = SubResource( 26 )
+states/HeavyAttack/position = Vector2( 949, 130 )
+states/Hop/node = SubResource( 27 )
+states/Hop/position = Vector2( 917, 304 )
+states/Idle/node = SubResource( 28 )
+states/Idle/position = Vector2( 664, 130 )
+states/Jump/node = SubResource( 29 )
+states/Jump/position = Vector2( 664, -19 )
+states/LayingDown/node = SubResource( 30 )
+states/LayingDown/position = Vector2( 337, 109 )
+states/Moving/node = SubResource( 33 )
+states/Moving/position = Vector2( 728, 304 )
+states/Shoot/node = SubResource( 57 )
+states/Shoot/position = Vector2( 917, 220 )
+states/Wave/node = SubResource( 38 )
+states/Wave/position = Vector2( 321, 313 )
+transitions = [ "Idle", "Climbing", SubResource( 39 ), "Climbing", "Idle", SubResource( 40 ), "Idle", "Moving", SubResource( 41 ), "Moving", "Idle", SubResource( 42 ), "Moving", "Hop", SubResource( 43 ), "Hop", "Moving", SubResource( 44 ), "Idle", "Cheer", SubResource( 47 ), "Cheer", "Idle", SubResource( 48 ), "Idle", "Wave", SubResource( 49 ), "Wave", "Idle", SubResource( 50 ), "Idle", "LayingDown", SubResource( 51 ), "LayingDown", "Idle", SubResource( 52 ), "Idle", "Defeat", SubResource( 58 ), "Idle", "Jump", SubResource( 59 ), "Jump", "Idle", SubResource( 60 ), "Idle", "Block", SubResource( 61 ), "Block", "Idle", SubResource( 62 ), "Idle", "Attack_1", SubResource( 63 ), "Attack_1", "Idle", SubResource( 64 ), "Idle", "HeavyAttack", SubResource( 65 ), "HeavyAttack", "Idle", SubResource( 66 ), "Idle", "Shoot", SubResource( 67 ), "Shoot", "Idle", SubResource( 68 ) ]
+start_node = "Idle"
+end_node = "Defeat"
+graph_offset = Vector2( 129, -61 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=46]
+
 [node name="BaseCharacter" type="Spatial"]
 script = ExtResource( 6 )
-type = 3
 
 [node name="KayKit Animated Character" type="Spatial" parent="."]
 transform = Transform( 1, -5.96046e-07, -1.34359e-07, -1.34359e-07, 0, -1, 5.96046e-07, 1, 0, 0, 0, 0 )
@@ -1014,32 +1193,32 @@ bones/0/name = "Body"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, -1.18396e-15, 5.29396e-23, -2.11758e-22, -1.19209e-07, 1, -1.18396e-15, -1, -1.19209e-07, 0, 0, 0 )
 bones/0/enabled = true
-bones/0/bound_children = [ NodePath("Body") ]
+bones/0/bound_children = [  ]
 bones/1/name = "Head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, -1.35264e-19, -1.11072e-26, 1.35264e-19, 1, -1.42108e-14, 1.11072e-26, 1.42108e-14, 1, -4.23516e-22, 0.711598, -6.96093e-15 )
 bones/1/enabled = true
-bones/1/bound_children = [ NodePath("Head") ]
+bones/1/bound_children = [  ]
 bones/2/name = "armLeft"
 bones/2/parent = 0
 bones/2/rest = Transform( 1.54972e-06, 0.471935, -0.881633, 5.0664e-07, -0.881633, -0.471935, -1, 3.12924e-07, -1.66893e-06, 0.14, 0.691598, 5.69666e-16 )
 bones/2/enabled = true
-bones/2/bound_children = [ NodePath("ArmLeft") ]
+bones/2/bound_children = [  ]
 bones/3/name = "handSlotLeft"
 bones/3/parent = 2
 bones/3/rest = Transform( 0, -1, 4.47035e-07, -0.471936, -4.76837e-07, -0.881633, 0.881633, -8.9407e-08, -0.471936, 5.4219e-15, 0.550922, 3.92296e-09 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("HandSlotLeft") ]
+bones/3/bound_children = [  ]
 bones/4/name = "armRight"
 bones/4/parent = 0
 bones/4/rest = Transform( 5.96046e-08, -0.471936, -0.881633, 1.47521e-06, -0.881633, 0.471936, -0.999998, -1.35601e-06, 5.96046e-07, -0.14, 0.691598, -2.02035e-15 )
 bones/4/enabled = true
-bones/4/bound_children = [ NodePath("ArmRight") ]
+bones/4/bound_children = [  ]
 bones/5/name = "handSlotRight"
 bones/5/parent = 4
 bones/5/rest = Transform( -7.15256e-07, -1, 7.45058e-07, 0.471936, -9.53674e-07, -0.881633, 0.881633, -2.08616e-07, 0.471936, -8.57541e-14, 0.550922, 1.65739e-08 )
 bones/5/enabled = true
-bones/5/bound_children = [ NodePath("HandSlotRight") ]
+bones/5/bound_children = [  ]
 
 [node name="PrototypePete" type="MeshInstance" parent="KayKit Animated Character/Skeleton"]
 visible = false
@@ -1048,13 +1227,13 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="Head" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 1, -1.1841e-15, 5.29285e-23, -2.11763e-22, -1.19209e-07, 1, -1.1841e-15, -1, -1.19209e-07, -8.42504e-16, -8.48289e-08, -0.711598 )
+transform = Transform( 1, -2.75576e-15, 3.39342e-16, -5.47057e-17, 0.102637, 0.994719, -2.77604e-15, -0.994719, 0.102637, -1.15247e-15, -0.0219009, -0.711261 )
 bone_name = "Head"
 
 [node name="Head" parent="KayKit Animated Character/Skeleton/Head" instance=ExtResource( 2 )]
 
 [node name="Body" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 1, -1.18396e-15, 5.29396e-23, -2.11758e-22, -1.19209e-07, 1, -1.18396e-15, -1, -1.19209e-07, 0, 0, 0 )
+transform = Transform( 1, -1.61955e-15, -3.16542e-17, -1.82058e-17, -0.0307771, 0.999526, -1.61975e-15, -0.999526, -0.0307771, 0, 0, 0 )
 bone_name = "Body"
 
 [node name="Body" type="MeshInstance" parent="KayKit Animated Character/Skeleton/Body"]
@@ -1064,44 +1243,48 @@ material/0 = null
 material/1 = null
 material/2 = null
 material/3 = null
-material/4 = null
+
+[node name="Offset" type="Position3D" parent="KayKit Animated Character/Skeleton/Body"]
+transform = Transform( 1, 2.77827e-19, 0, 3.18484e-19, 1, 0, 0, 0, 1, 0, 0.7, 0 )
+
+[node name="Accessory" type="MeshInstance" parent="KayKit Animated Character/Skeleton/Body/Offset"]
+transform = Transform( 1, 2.77827e-19, 0, 3.18484e-19, 1, 0, 0, 0, 1, 5.00897e-10, -0.00372803, -4.44416e-10 )
+visible = false
+mesh = ExtResource( 7 )
+skeleton = NodePath("../..")
+material/0 = null
 
 [node name="ArmLeft" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 1.54972e-06, 0.471935, -0.881633, -1, 4.18023e-07, -1.61267e-06, -3.87431e-07, 0.881633, 0.471935, 0.14, -8.24447e-08, -0.691598 )
+transform = Transform( 1.66891e-06, 0.532811, -0.846234, -0.999526, 0.0260453, 0.0163968, 0.0307768, 0.845833, 0.532559, 0.14, -0.0212854, -0.69127 )
 bone_name = "armLeft"
 
 [node name="Offset" type="Position3D" parent="KayKit Animated Character/Skeleton/ArmLeft"]
 transform = Transform( 0.0288262, 0.0265131, -0.999232, 0.356995, -0.933993, -0.0144828, -0.933663, -0.356303, -0.0363886, -0.000857098, 0.0608011, -0.019068 )
 
 [node name="ArmLeft" type="MeshInstance" parent="KayKit Animated Character/Skeleton/ArmLeft/Offset"]
-mesh = ExtResource( 3 )
+mesh = ExtResource( 5 )
 material/0 = null
 material/1 = null
-material/2 = null
-material/3 = null
 
 [node name="HandSlotLeft" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -1, -1.69593e-06, 8.64267e-07, -1.61906e-06, 1, -5.44999e-08, -8.64267e-07, -7.51585e-08, -1, 0.399999, 1.47853e-07, -0.205887 )
+transform = Transform( -0.99752, -1.95784e-06, -0.0703755, 0.00216408, 0.999526, -0.030701, 0.0703422, -0.0307771, -0.997048, 0.433537, -0.00693647, -0.225282 )
 bone_name = "handSlotLeft"
 
 [node name="ArmRight" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 5.96046e-08, -0.471936, -0.881633, -0.999998, -1.25091e-06, 5.39787e-07, -1.356e-06, 0.881633, -0.471936, -0.14, -8.24447e-08, -0.691598 )
+transform = Transform( -0.0170737, -0.510947, -0.859443, -0.931675, 0.3201, -0.171794, 0.362885, 0.79779, -0.481503, -0.14, -0.0212854, -0.69127 )
 bone_name = "armRight"
 
 [node name="Offset" type="MeshInstance" parent="KayKit Animated Character/Skeleton/ArmRight"]
 transform = Transform( -0.0314974, 0.0195307, -0.999315, -0.377658, -0.925925, -0.00619296, -0.925408, 0.377204, 0.0365402, -4.37134e-08, 0.0672534, 0.0214229 )
-mesh = ExtResource( 5 )
 skeleton = NodePath("")
-material/0 = null
-material/1 = null
 
 [node name="ArmRight" type="MeshInstance" parent="KayKit Animated Character/Skeleton/ArmRight/Offset"]
-mesh = ExtResource( 5 )
+mesh = ExtResource( 3 )
 material/0 = null
 material/1 = null
 
 [node name="HandSlotRight" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -1, 5.74391e-07, 0, 6.00798e-07, 0.999998, 6.12533e-07, 0, 6.13664e-07, -1, -0.4, -7.71599e-07, -0.205887 )
+transform = Transform( -0.97395, 0.224915, -0.0289004, 0.220337, 0.908503, -0.355062, -0.0536028, -0.352181, -0.934396, -0.421492, 0.155065, -0.25175 )
 bone_name = "handSlotRight"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1123,3 +1306,11 @@ bone_name = "handSlotRight"
 "anims/KayKit Animated Character|KayKit Animated Character|Shooting(2h" = SubResource( 18 )
 "anims/KayKit Animated Character|KayKit Animated Character|Walk|KayKit" = SubResource( 19 )
 "anims/KayKit Animated Character|KayKit Animated Character|Wave|KayKit" = SubResource( 20 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 45 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 46 )
+parameters/Moving/blend_position = 0.00857143
+parameters/Shoot/blend_position = Vector2( 0.470455, 0.45092 )

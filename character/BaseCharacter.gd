@@ -2,38 +2,59 @@ tool
 extends Spatial
 class_name BaseCharacter
 
-enum TYPE {ARCHER, MAGE, MINION, WARRIOR}
+enum TYPE {SK_ARCHER, SK_MAGE, SK_MINION, SK_WARRIOR}
 
-export (TYPE) var type = TYPE.ARCHER setget set_type
-export (bool) var broken = false
+export (TYPE) var type = TYPE.SK_MINION setget set_type
+export (bool) var broken = false setget set_broken
 
-# mesh instances (or else like head)
-onready var head: CharacterHead = $'KayKit Animated Character/Skeleton/Head/Head'
+onready var head: CharacterHead = $'KayKit Animated Character/Skeleton/Head/Head' # removed type for cyclic reference error on load
 onready var body: MeshInstance = $'KayKit Animated Character/Skeleton/Body/Body'
 onready var arm_left: MeshInstance = $'KayKit Animated Character/Skeleton/ArmLeft/Offset/ArmLeft'
 onready var arm_right: MeshInstance = $'KayKit Animated Character/Skeleton/ArmRight/Offset/ArmRight'
+onready var body_accessory : MeshInstance = $'KayKit Animated Character/Skeleton/Body/Offset/Accessory'
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+var parts = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	parts = [{"name": "body", "node": body},
+			{"name": "left_arm", "node": arm_left},
+			{"name": "right_arm", "node": arm_right}]
+	_update_looks()
 
 func set_type(value: int) -> void:
 	if value == type:
 		return
 	type = value
+	_update_looks()
+
+func set_broken(value: bool) -> void:
+	if value == broken:
+		return
+	broken = value
+	_update_looks()
+
+func _update_looks() -> void:
+	head.type = type
+	head.broken = broken
+	var type_name = ""
+	var broken_suffix = "_broken" if broken else ""
+	body_accessory.visible = false
 	match type:
-		TYPE.ARCHER:
-			body.mesh = load('res://assets/kaykit_skeletons/parts/archer_body.tres')
-		TYPE.MAGE:
-			body.mesh = load('res://assets/kaykit_skeletons/parts/mage_body.tres')
-		TYPE.MINION:
-			body.mesh = load('res://assets/kaykit_skeletons/parts/minion_body.tres')
-		TYPE.WARRIOR:
-			body.mesh = load('res://assets/kaykit_skeletons/parts/warrior_body.tres')
-		_:
-			body.mesh = load('res://assets/kaykit_skeletons/parts/minion_body.tres')
+		TYPE.SK_ARCHER:
+			type_name = "skeleton_archer"
+		TYPE.SK_MINION:
+			type_name = "skeleton_minion"
+		TYPE.SK_WARRIOR:
+			type_name = "skeleton_warrior"
+		TYPE.SK_MAGE:
+			type_name = "skeleton_mage"
+			body_accessory.visible = true
+			body_accessory.mesh = load('res://assets/kaykit/parts/cape_mage.tres')
+			# I may need to change the offsets if other objects are supported
+	
+	for part in parts:
+		var path = str('res://assets/kaykit/parts/', type_name, '_', part["name"], broken_suffix ,'.tres')
+		var mesh_instance: MeshInstance = part["node"]
+		mesh_instance.mesh = load(path)
