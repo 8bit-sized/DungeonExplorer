@@ -2,6 +2,8 @@ tool
 extends Spatial
 class_name BaseCharacter
 
+# Looks vars
+
 enum TYPE {SK_ARCHER, SK_MAGE, SK_MINION, SK_WARRIOR}
 
 export (TYPE) var type = TYPE.SK_MINION setget set_type
@@ -15,13 +17,19 @@ onready var body_accessory : MeshInstance = $'KayKit Animated Character/Skeleton
 
 var parts = []
 
+# Animation vars
 
-# Called when the node enters the scene tree for the first time.
+onready var _animation_tree := $AnimationTree
+onready var _playback : AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
+
 func _ready() -> void:
 	parts = [{"name": "body", "node": body},
 			{"name": "left_arm", "node": arm_left},
 			{"name": "right_arm", "node": arm_right}]
 	_update_looks()
+	_animation_tree.active = true # make sure this is active
+
+# Looks Functions
 
 func set_type(value: int) -> void:
 	if value == type:
@@ -58,3 +66,5 @@ func _update_looks() -> void:
 		var path = str('res://assets/kaykit/parts/', type_name, '_', part["name"], broken_suffix ,'.tres')
 		var mesh_instance: MeshInstance = part["node"]
 		mesh_instance.mesh = load(path)
+
+# Animation functions

@@ -4,9 +4,9 @@
 [ext_resource path="res://character/SimplePlayer.gd" type="Script" id=2]
 [ext_resource path="res://character/SimpleCameraRig.gd" type="Script" id=3]
 
-[sub_resource type="CapsuleShape" id=1]
-radius = 0.493202
-height = 0.665018
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.475324
+height = 0.747251
 
 [sub_resource type="CapsuleShape" id=2]
 
@@ -19,7 +19,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.81828, 0.0047822 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="SimpleCameraRig" type="Position3D" parent="."]
 script = ExtResource( 3 )
