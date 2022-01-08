@@ -1235,7 +1235,7 @@ states/wave/node = SubResource( 40 )
 states/wave/position = Vector2( -30, 240 )
 transitions = [ "Idle", "wave", SubResource( 41 ), "wave", "Idle", SubResource( 42 ), "Idle", "cheer", SubResource( 43 ), "cheer", "Idle", SubResource( 44 ), "Idle", "laying_down", SubResource( 45 ), "laying_down", "Idle", SubResource( 46 ), "Idle", "defeat", SubResource( 47 ), "defeat", "laying_down", SubResource( 48 ), "Idle", "climb", SubResource( 49 ), "climb", "Idle", SubResource( 50 ), "Idle", "jump", SubResource( 51 ), "jump", "Idle", SubResource( 52 ), "Idle", "block", SubResource( 53 ), "block", "Idle", SubResource( 54 ), "Idle", "shot1h", SubResource( 55 ), "shot1h", "Idle", SubResource( 56 ), "Idle", "shot2h", SubResource( 57 ), "shot2h", "Idle", SubResource( 58 ), "Idle", "attack", SubResource( 59 ), "attack", "Idle", SubResource( 60 ), "Idle", "heavy_attack", SubResource( 61 ), "heavy_attack", "Idle", SubResource( 62 ), "Idle", "shooting2h", SubResource( 63 ), "shooting2h", "Idle", SubResource( 64 ), "Idle", "shooting1h", SubResource( 65 ), "shooting1h", "Idle", SubResource( 66 ), "Idle", "move_ground", SubResource( 67 ), "move_ground", "Idle", SubResource( 68 ), "move_ground", "hop", SubResource( 69 ), "hop", "move_ground", SubResource( 70 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -134.601, 221.037 )
+graph_offset = Vector2( -49.601, 90.037 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=72]
 
@@ -1243,7 +1243,7 @@ graph_offset = Vector2( -134.601, 221.037 )
 script = ExtResource( 7 )
 
 [node name="KayKit Animated Character" type="Spatial" parent="."]
-transform = Transform( 1, -5.96046e-07, -1.34359e-07, -1.34359e-07, 0, -1, 5.96046e-07, 1, 0, 0, 0, 0 )
+transform = Transform( 1, -5.96046e-07, -1.34359e-07, -1.34359e-07, 5.96046e-08, -1, 5.96046e-07, 1, 5.96046e-08, 0, 0, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="KayKit Animated Character"]
 bones/0/name = "Body"
@@ -1299,7 +1299,7 @@ tip_bone = "handSlotRight"
 target_node = NodePath("../PickHand/HandRight/HRTarget")
 
 [node name="HandRBone" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.97516, 0.211865, -0.0646193, 0.221215, 0.916754, -0.332599, -0.0112259, -0.338632, -0.940852, -0.404472, 0.160967, -0.237577 )
+transform = Transform( -0.973793, 0.225798, -0.0272377, 0.220487, 0.907875, -0.356572, -0.0557852, -0.353234, -0.93387, -0.422271, 0.154715, -0.25253 )
 visible = false
 bone_name = "handSlotRight"
 
@@ -1330,7 +1330,7 @@ anims/throw = SubResource( 3 )
 anims/throw_charge = SubResource( 4 )
 
 [node name="HeadAccessoryBone" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 1, -2.12161e-15, 2.06899e-16, -1.07818e-17, 0.0920242, 0.995757, -2.13165e-15, -0.995757, 0.0920242, -9.11116e-16, -0.00484656, -0.711581 )
+transform = Transform( 1, -2.79892e-15, 3.49413e-16, -5.82402e-17, 0.103362, 0.994644, -2.82004e-15, -0.994644, 0.103362, -1.16894e-15, -0.0230654, -0.711224 )
 bone_name = "Head"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1358,7 +1358,7 @@ tree_root = SubResource( 71 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 72 )
-parameters/move_ground/blend_position = 0.282087
+parameters/move_ground/blend_position = 0.283416
 
 [connection signal="area_entered" from="KayKit Animated Character/Skeleton/PickHand" to="KayKit Animated Character/Skeleton/PickHand" method="_on_PickHand_area_entered"]
 [connection signal="area_exited" from="KayKit Animated Character/Skeleton/PickHand" to="KayKit Animated Character/Skeleton/PickHand" method="_on_PickHand_area_exited"]

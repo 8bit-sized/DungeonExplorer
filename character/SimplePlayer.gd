@@ -18,17 +18,20 @@ func _physics_process(delta: float) -> void:
 	var fall_velocity = velocity.y + gravity * delta # apply gravity
 	if is_on_floor() and Input.is_action_just_pressed('jump'):
 		fall_velocity = jump_impulse
+		character.do_action(BaseCharacter.Actions.JUMP)
 	
 	
 	var input_direction := Input.get_vector('move_left','move_right', 'move_front', 'move_back')
 	#var move_direction := Vector3(input_direction.x, 0, input_direction.y) 
 	var move_direction := camera_rig.global_transform.basis.x * input_direction.x + camera_rig.global_transform.basis.z * input_direction.y
-	
-	if move_direction.length() > 0.2:
-		target = target.linear_interpolate(character.global_transform.origin - move_direction, 3.0*delta)
+	if move_direction.length() > 0.001:
+		target = target.linear_interpolate(character.global_transform.origin - move_direction, 8.0*delta)
 		#fix target height to avoid tilting of charcater in jump, slopes (could be removed if FSM, maybe...)
 		target.y = character.global_transform.origin.y
 		character.look_at(target, Vector3.UP)
+		character.do_action(BaseCharacter.Actions.MOVE, move_direction)
+	else:
+		character.do_action(BaseCharacter.Actions.IDLE)
 	
 	velocity = move_direction * speed
 	velocity.y = fall_velocity

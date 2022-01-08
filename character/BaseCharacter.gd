@@ -18,6 +18,8 @@ onready var body_accessory : MeshInstance = $'KayKit Animated Character/Skeleton
 var parts = []
 
 # Animation vars
+enum Actions {IDLE, MOVE, JUMP, WAVE} # let's consider states from a different perspective
+var current_action = Actions.IDLE
 
 onready var _animation_tree := $AnimationTree
 onready var _playback : AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
@@ -68,3 +70,28 @@ func _update_looks() -> void:
 		mesh_instance.mesh = load(path)
 
 # Animation functions
+func do_action(action: int, direction: Vector3 = Vector3.ZERO) -> void:
+	_animation_tree["parameters/Moving/blend_position"] = direction.length() # update before refusing to change animation
+	if current_action == action:
+		return
+	current_action = action
+	print("Do action: " + Actions.keys()[current_action])
+	var action_name = "Idle"
+	match action:
+		Actions.IDLE:
+			action_name = "Idle"
+		Actions.MOVE: 
+			action_name = "Moving"
+		Actions.JUMP: 
+			action_name = "Jump"
+		Actions.Wave: 
+			action_name = "Wave"
+		_:
+			action_name = "idle"
+	_playback.travel(action_name)
+	pass
+
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	print(anim_name)
+	pass # Replace with function body.
