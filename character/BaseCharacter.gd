@@ -31,6 +31,7 @@ func _ready() -> void:
 	_update_looks()
 	_animation_tree.active = true # make sure this is active
 
+
 # Looks Functions
 
 func set_type(value: int) -> void:
@@ -90,8 +91,3 @@ func do_action(action: int, direction: Vector3 = Vector3.ZERO) -> void:
 			action_name = "idle"
 	_playback.travel(action_name)
 	pass
-
-
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	print(anim_name)
-	pass # Replace with function body.
