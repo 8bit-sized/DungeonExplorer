@@ -18,8 +18,8 @@ onready var body_accessory : MeshInstance = $'KayKit Animated Character/Skeleton
 var parts = []
 
 # Animation vars
-enum Actions {IDLE, MOVE, JUMP, WAVE} # let's consider states from a different perspective
-var current_action = Actions.IDLE
+enum Actions {IDLE, MOVE, AIR, FALL, WAVE} # let's consider states from a different perspective
+var current_action = Actions.IDLE      # I could use a string
 
 onready var _animation_tree := $AnimationTree
 onready var _playback : AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
@@ -72,22 +72,17 @@ func _update_looks() -> void:
 
 # Animation functions
 func do_action(action: int, direction: Vector3 = Vector3.ZERO) -> void:
-	_animation_tree["parameters/Moving/blend_position"] = direction.length() # update before refusing to change animation
+	_animation_tree["parameters/MOVE/blend_position"] = direction.length()/10 # update before refusing to change animation
 	if current_action == action:
 		return
 	current_action = action
-	print("Do action: " + Actions.keys()[current_action])
-	var action_name = "Idle"
-	match action:
-		Actions.IDLE:
-			action_name = "Idle"
-		Actions.MOVE: 
-			action_name = "Moving"
-		Actions.JUMP: 
-			action_name = "Jump"
-		Actions.Wave: 
-			action_name = "Wave"
-		_:
-			action_name = "idle"
+	var action_name = Actions.keys()[action]
 	_playback.travel(action_name)
-	pass
+
+
+
+# experiment to get current executing action by calling method with parameter in animation
+func entered_state(state_name: String) -> void:
+	#print("entered state: " + state_name)
+	if state_name == "IDLE":
+		current_action = 0 # find a better way to get the index
