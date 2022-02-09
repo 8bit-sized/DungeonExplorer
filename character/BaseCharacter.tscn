@@ -1116,7 +1116,7 @@ animation = "KayKit Animated Character|KayKit Animated Character|Run|KayKit "
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=33]
 blend_point_0/node = SubResource( 31 )
-blend_point_0/pos = 0.1
+blend_point_0/pos = 0.2
 blend_point_1/node = SubResource( 32 )
 blend_point_1/pos = 0.6
 min_space = 0.0
@@ -1240,7 +1240,7 @@ states/IDLE/position = Vector2( 664, 130 )
 states/LAY/node = SubResource( 30 )
 states/LAY/position = Vector2( 361, 172 )
 states/MOVE/node = SubResource( 33 )
-states/MOVE/position = Vector2( 899, -13 )
+states/MOVE/position = Vector2( 901, -13 )
 states/SHOOT/node = SubResource( 57 )
 states/SHOOT/position = Vector2( 874, 304 )
 states/WAVE/node = SubResource( 38 )
@@ -1248,7 +1248,7 @@ states/WAVE/position = Vector2( 468, 304 )
 transitions = [ "IDLE", "CLIMB", SubResource( 39 ), "CLIMB", "IDLE", SubResource( 40 ), "IDLE", "MOVE", SubResource( 41 ), "MOVE", "IDLE", SubResource( 42 ), "MOVE", "HOP", SubResource( 43 ), "HOP", "MOVE", SubResource( 44 ), "IDLE", "CHEER", SubResource( 47 ), "CHEER", "IDLE", SubResource( 48 ), "IDLE", "WAVE", SubResource( 49 ), "WAVE", "IDLE", SubResource( 50 ), "IDLE", "LAY", SubResource( 51 ), "LAY", "IDLE", SubResource( 52 ), "IDLE", "DEFEAT", SubResource( 58 ), "IDLE", "BLOCK", SubResource( 61 ), "BLOCK", "IDLE", SubResource( 62 ), "IDLE", "SHOOT", SubResource( 67 ), "SHOOT", "IDLE", SubResource( 68 ), "IDLE", "ATTACK", SubResource( 72 ), "ATTACK", "IDLE", SubResource( 73 ), "IDLE", "AIR", SubResource( 76 ), "AIR", "IDLE", SubResource( 77 ), "MOVE", "AIR", SubResource( 78 ), "AIR", "MOVE", SubResource( 79 ) ]
 start_node = "IDLE"
 end_node = "DEFEAT"
-graph_offset = Vector2( -221.935, -30.4 )
+graph_offset = Vector2( 452.065, -66.4 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=46]
 
@@ -1297,13 +1297,13 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="Head" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 1, -2.10566e-15, 2.03907e-16, -9.83567e-18, 0.091758, 0.995781, -2.11548e-15, -0.995781, 0.091758, -9.0506e-16, -0.00441893, -0.711584 )
+transform = Transform( 0.999999, -0.0012697, 0.000357703, -0.000265203, 0.0721194, 0.997396, -0.00129218, -0.997395, 0.072119, -0.0552093, 0.06336, -0.709474 )
 bone_name = "Head"
 
 [node name="Head" parent="KayKit Animated Character/Skeleton/Head" instance=ExtResource( 2 )]
 
 [node name="Body" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 1, -1.27187e-15, -4.38153e-18, -3.51672e-18, -0.00620988, 0.999981, -1.27187e-15, -0.999981, -0.00620988, 0, 0, 0 )
+transform = Transform( 0.996985, -0.0775849, 0.000697702, 0.00623196, 0.0890391, 0.996009, -0.0773373, -0.993002, 0.0892542, 1.65436e-23, 1.13798e-15, -0.00285598 )
 bone_name = "Body"
 
 [node name="Body" type="MeshInstance" parent="KayKit Animated Character/Skeleton/Body"]
@@ -1325,7 +1325,7 @@ skeleton = NodePath("../..")
 material/0 = null
 
 [node name="ArmLeft" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 1.81703e-06, 0.48627, -0.873808, -0.999981, 0.00542689, 0.00301788, 0.00620957, 0.873791, 0.486261, 0.14, -0.00429474, -0.691585 )
+transform = Transform( -0.0252858, 0.539505, -0.841602, -0.99295, 0.0839732, 0.0836635, 0.115809, 0.837784, 0.533578, 0.0843464, 0.0573669, -0.699214 )
 bone_name = "armLeft"
 
 [node name="Offset" type="Position3D" parent="KayKit Animated Character/Skeleton/ArmLeft"]
@@ -1337,11 +1337,11 @@ material/0 = null
 material/1 = null
 
 [node name="HandSlotLeft" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.999866, -2.08803e-06, -0.01633, 9.93968e-05, 0.999981, -0.00620909, 0.0163297, -0.00620991, -0.999847, 0.407897, -0.00130495, -0.210194 )
+transform = Transform( -0.973701, 0.222241, -0.0501394, 0.22712, 0.929556, -0.290419, -0.0179354, -0.294169, -0.955585, 0.381572, 0.10363, -0.23766 )
 bone_name = "handSlotLeft"
 
 [node name="ArmRight" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.00344475, -0.479289, -0.877651, -0.940308, 0.300222, -0.160262, 0.340303, 0.824711, -0.451714, -0.14, -0.00429474, -0.691585 )
+transform = Transform( -0.0516061, -0.429884, -0.901408, -0.960993, -0.224199, 0.161938, -0.271709, 0.874606, -0.401546, -0.19184, 0.0663346, -0.680101 )
 bone_name = "armRight"
 
 [node name="Offset" type="MeshInstance" parent="KayKit Animated Character/Skeleton/ArmRight"]
@@ -1354,7 +1354,7 @@ material/0 = null
 material/1 = null
 
 [node name="HandSlotRight" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.975175, 0.211532, -0.0654916, 0.221204, 0.916962, -0.332034, -0.0101826, -0.338278, -0.940991, -0.404051, 0.161104, -0.237233 )
+transform = Transform( -0.999613, -0.00337568, -0.0276217, -0.000668153, 0.995238, -0.097447, 0.0278193, -0.0973915, -0.994857, -0.428673, -0.0571814, -0.198262 )
 bone_name = "handSlotRight"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1384,5 +1384,5 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 46 )
 parameters/ATTACK/blend_position = 0.0
-parameters/MOVE/blend_position = 0.201646
+parameters/MOVE/blend_position = 0.236
 parameters/SHOOT/blend_position = Vector2( 0, 0 )

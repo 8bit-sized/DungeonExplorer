@@ -24,6 +24,10 @@ var current_action = Actions.IDLE      # I could use a string
 onready var _animation_tree := $AnimationTree
 onready var _playback : AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 
+var _velocity_buffer_size := 5
+var _velocity_candidate := 0.0
+var _velocity_count := 0
+
 func _ready() -> void:
 	parts = [{"name": "body", "node": body},
 			{"name": "left_arm", "node": arm_left},
@@ -72,14 +76,23 @@ func _update_looks() -> void:
 
 # Animation functions
 func do_action(action: int, direction: Vector3 = Vector3.ZERO) -> void:
-	_animation_tree["parameters/MOVE/blend_position"] = direction.length()/10 # update before refusing to change animation
+	#_animation_tree["parameters/MOVE/blend_position"] = round(direction.length())/10 # update before refusing to change animation
+	buffer_velocity(direction.length())
 	if current_action == action:
 		return
 	current_action = action
 	var action_name = Actions.keys()[action]
 	_playback.travel(action_name)
 
-
+func buffer_velocity(new_velocity : float = 0.0) -> void:
+	var rounded_velocity = round(new_velocity)/10
+	if rounded_velocity != _velocity_candidate:
+		_velocity_candidate = rounded_velocity
+		_velocity_count = 1
+	else:
+		_velocity_count += 1
+		if _velocity_count == _velocity_buffer_size: #changes only once signal is stable
+			_animation_tree["parameters/MOVE/blend_position"] = rounded_velocity
 
 # experiment to get current executing action by calling method with parameter in animation
 func entered_state(state_name: String) -> void:
