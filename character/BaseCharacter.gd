@@ -3,10 +3,7 @@ extends Spatial
 class_name BaseCharacter
 
 # Looks vars
-
-enum TYPE {SK_ARCHER, SK_MAGE, SK_MINION, SK_WARRIOR}
-
-export (TYPE) var type = TYPE.SK_MINION setget set_type
+export (Global.CHAR) var type = Global.CHAR.SK_MINION setget set_type
 export (bool) var broken = false setget set_broken
 
 onready var head: CharacterHead = $'KayKit Animated Character/Skeleton/Head/Head' # removed type for cyclic reference error on load
@@ -51,22 +48,32 @@ func set_broken(value: bool) -> void:
 	_update_looks()
 
 func _update_looks() -> void:
-	head.type = type
-	head.broken = broken
+	#head.type = type # make another head file with some different controls from skull, replace broken with "variant" concept and make export work if the underlying control exists
+	#head.broken = broken
+	# skull should load a different subclass of head, but I need all controls on base character head with empty implementation for missing controls
 	var type_name = ""
 	var broken_suffix = "_broken" if broken else ""
 	body_accessory.visible = false
 	match type:
-		TYPE.SK_ARCHER:
+		Global.CHAR.SK_ARCHER:
 			type_name = "skeleton_archer"
-		TYPE.SK_MINION:
+		Global.CHAR.SK_MINION:
 			type_name = "skeleton_minion"
-		TYPE.SK_WARRIOR:
+		Global.CHAR.SK_WARRIOR:
 			type_name = "skeleton_warrior"
-		TYPE.SK_MAGE:
+		Global.CHAR.SK_MAGE:
 			type_name = "skeleton_mage"
 			body_accessory.visible = true
 			body_accessory.mesh = load('res://assets/kaykit/parts/cape_mage.tres')
+		Global.CHAR.DGN_ROGUE:
+			type_name = "dungeon_rogue"
+			# add quiver as back accessory
+		Global.CHAR.DGN_BARBARIAN:
+			type_name = "dungeon_barbarian"
+		Global.CHAR.DGN_MAGE:
+			type_name = "dungeon_mage"
+		Global.CHAR.DGN_KNIGHT:
+			type_name = "dungeon_knight"
 			# I may need to change the offsets if other objects are supported
 	
 	for part in parts:

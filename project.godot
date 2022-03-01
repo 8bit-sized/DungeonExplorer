@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://character/Camera/CameraState.gd"
 }, {
 "base": "Spatial",
+"class": "CharHead",
+"language": "GDScript",
+"path": "res://assets/kaykit/parts/CharacterHead.gd"
+}, {
+"base": "Spatial",
 "class": "Character",
 "language": "GDScript",
 "path": "res://character/Character.gd"
@@ -125,6 +130,7 @@ _global_script_class_icons={
 "Burnable": "",
 "CameraRig": "",
 "CameraState": "",
+"CharHead": "",
 "Character": "",
 "CharacterHead": "",
 "ChemistryEngine": "",
@@ -148,6 +154,10 @@ _global_script_class_icons={
 
 config/name="DungeonExplorer"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Global.gd"
 
 [input]
 

@@ -1,10 +1,8 @@
 tool
-extends Spatial
+extends Spatial #CharacterHead
 class_name CharacterHead
 
-enum TYPE {SK_ARCHER, SK_MAGE, SK_MINION, SK_WARRIOR}
-
-export (TYPE)  var type = TYPE.SK_MINION setget set_type
+export (Global.CHAR)  var type = Global.CHAR.SK_MINION setget set_type
 export (bool) var broken = false setget set_broken
 
 export (float, 0.0, 1.0, 0.1) var anger := 0.0 setget set_anger
@@ -59,15 +57,15 @@ func _update_looks() -> void:
 	var lower_name = "archer_mask"
 	
 	match type:
-		TYPE.SK_ARCHER:
+		Global.CHAR.SK_ARCHER:
 			upper_accessory.visible = true
 			upper_name = "archer_hood"
 			lower_accessory.visible = true
 			lower_name = "archer_mask"
-		TYPE.SK_WARRIOR:
+		Global.CHAR.SK_WARRIOR:
 			upper_accessory.visible = true
 			upper_name = "warrior_helmet"
-		TYPE.SK_MAGE:
+		Global.CHAR.SK_MAGE:
 			lower_accessory.visible = true
 			lower_name = "mage_cowl"
 			if broken:

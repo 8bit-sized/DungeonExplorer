@@ -1297,13 +1297,13 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="Head" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 0.999999, -0.0012697, 0.000357703, -0.000265203, 0.0721194, 0.997396, -0.00129218, -0.997395, 0.072119, -0.0552093, 0.06336, -0.709474 )
+transform = Transform( 1, -2.11539e-15, 2.05877e-16, -1.05587e-17, 0.0919201, 0.995766, -2.12535e-15, -0.995766, 0.0919201, -9.08752e-16, -0.00467852, -0.711583 )
 bone_name = "Head"
 
 [node name="Head" parent="KayKit Animated Character/Skeleton/Head" instance=ExtResource( 2 )]
 
 [node name="Body" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( 0.996985, -0.0775849, 0.000697702, 0.00623196, 0.0890391, 0.996009, -0.0773373, -0.993002, 0.0892542, 1.65436e-23, 1.13798e-15, -0.00285598 )
+transform = Transform( 1, -1.27706e-15, -5.21178e-18, -3.18458e-18, -0.00657466, 0.999978, -1.27706e-15, -0.999978, -0.00657466, 0, 0, 0 )
 bone_name = "Body"
 
 [node name="Body" type="MeshInstance" parent="KayKit Animated Character/Skeleton/Body"]
@@ -1325,7 +1325,7 @@ skeleton = NodePath("../..")
 material/0 = null
 
 [node name="ArmLeft" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.0252858, 0.539505, -0.841602, -0.99295, 0.0839732, 0.0836635, 0.115809, 0.837784, 0.533578, 0.0843464, 0.0573669, -0.699214 )
+transform = Transform( 1.78753e-06, 0.485022, -0.874501, -0.999978, 0.00575018, 0.00318708, 0.00657436, 0.874483, 0.485012, 0.14, -0.00454702, -0.691583 )
 bone_name = "armLeft"
 
 [node name="Offset" type="Position3D" parent="KayKit Animated Character/Skeleton/ArmLeft"]
@@ -1337,11 +1337,11 @@ material/0 = null
 material/1 = null
 
 [node name="HandSlotLeft" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.973701, 0.222241, -0.0501394, 0.22712, 0.929556, -0.290419, -0.0179354, -0.294169, -0.955585, 0.381572, 0.10363, -0.23766 )
+transform = Transform( -0.999889, -2.05804e-06, -0.014903, 9.60014e-05, 0.999978, -0.00657398, 0.0149027, -0.0065747, -0.999867, 0.407209, -0.00137912, -0.209811 )
 bone_name = "handSlotLeft"
 
 [node name="ArmRight" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.0516061, -0.429884, -0.901408, -0.960993, -0.224199, 0.161938, -0.271709, 0.874606, -0.401546, -0.19184, 0.0663346, -0.680101 )
+transform = Transform( -0.00298387, -0.478325, -0.878178, -0.940184, 0.300494, -0.160479, 0.340649, 0.825172, -0.450611, -0.14, -0.00454702, -0.691583 )
 bone_name = "armRight"
 
 [node name="Offset" type="MeshInstance" parent="KayKit Animated Character/Skeleton/ArmRight"]
@@ -1354,7 +1354,7 @@ material/0 = null
 material/1 = null
 
 [node name="HandSlotRight" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
-transform = Transform( -0.999613, -0.00337568, -0.0276217, -0.000668153, 0.995238, -0.097447, 0.0278193, -0.0973915, -0.994857, -0.428673, -0.0571814, -0.198262 )
+transform = Transform( -0.975199, 0.211075, -0.0665914, 0.221142, 0.916851, -0.33238, -0.00910279, -0.338864, -0.940792, -0.40352, 0.161002, -0.236978 )
 bone_name = "handSlotRight"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

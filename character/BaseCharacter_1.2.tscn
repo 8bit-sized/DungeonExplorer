@@ -1653,7 +1653,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711598, 0 )
 bone_name = "Head"
 
 [node name="Head" parent="KayKit Animated Character/Skeleton/Head" instance=ExtResource( 7 )]
-type = 0
 
 [node name="Body" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
 bone_name = "Body"
