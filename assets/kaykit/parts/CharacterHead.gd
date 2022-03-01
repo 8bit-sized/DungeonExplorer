@@ -29,13 +29,20 @@ func _ready() -> void:
 	_update_looks()
 
 func set_anger(value: float) -> void:
-	pass
+	if type == Global.CHAR.SK_ARCHER or type == Global.CHAR.SK_MAGE or type == Global.CHAR.SK_WARRIOR or type == Global.CHAR.SK_MINION:
+		anger = value
+		main.set('blend_shapes/Angry', anger)
 
 func set_happiness(value: float) -> void:
-	pass
+	if type == Global.CHAR.SK_ARCHER or type == Global.CHAR.SK_MAGE or type == Global.CHAR.SK_WARRIOR or type == Global.CHAR.SK_MINION:
+		happiness = value
+		main.set('blend_shapes/Happy', happiness)
 
 func set_motion(value: float) -> void:
-	$MovingJoint.rotate_x((value - motion)/5.8)#remap acording to character
+	if type == Global.CHAR.DGN_KNIGHT:
+		$MovingJoint.rotate_x((value + motion)/2)
+	else:
+		$MovingJoint.rotate_x((value - motion)/5.8)#remap acording to character
 	motion = value
 
 func set_type(value: int) -> void:
@@ -43,14 +50,12 @@ func set_type(value: int) -> void:
 		return
 	type = value
 	_update_looks()
-	print("Changed type")
 
 func set_variant(value: int) -> void:
 	if variant == value:
 		return
 	variant = value
 	_update_looks()
-	print("Changed variant")
 
 func _update_looks() -> void:
 	var variant_suffix := "_d"
@@ -67,6 +72,8 @@ func _update_looks() -> void:
 	
 	var type_name = ""
 	moving_part.visible = false
+	moving_part.transform.origin.y = -0.127
+	moving_part.transform.origin.z = -0.028
 	$MovingJoint.transform.origin.y = 0.259 # jaw default
 	$MovingJoint.transform.origin.z = 0.082
 	upper_accessory.visible = false
@@ -102,8 +109,10 @@ func _update_looks() -> void:
 			lower_accessory.visible = true
 			moving_name = type_name + "_visor"
 			moving_part.visible = true
-			$MovingJoint.transform.origin.y = 0.259 # jaw default
-			$MovingJoint.transform.origin.z = 0.082
+			moving_part.transform.origin.y = 0.188
+			moving_part.transform.origin.z = -0.131
+			$MovingJoint.transform.origin.y = 0.668
+			$MovingJoint.transform.origin.z = 0.204
 			upper_accessory.visible = true
 			upper_name = "_helmet"
 			upper_accessory.transform.origin.y = 0.543

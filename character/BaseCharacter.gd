@@ -6,7 +6,7 @@ class_name BaseCharacter
 export (Global.CHAR) var type = Global.CHAR.SK_MINION setget set_type
 export (bool) var broken = false setget set_broken
 
-onready var head: CharacterHead = $'KayKit Animated Character/Skeleton/Head/Head' # removed type for cyclic reference error on load
+onready var head: CharHead = $'KayKit Animated Character/Skeleton/Head/Head' # removed type for cyclic reference error on load
 onready var body: MeshInstance = $'KayKit Animated Character/Skeleton/Body/Body'
 onready var arm_left: MeshInstance = $'KayKit Animated Character/Skeleton/ArmLeft/Offset/ArmLeft'
 onready var arm_right: MeshInstance = $'KayKit Animated Character/Skeleton/ArmRight/Offset/ArmRight'
@@ -48,9 +48,8 @@ func set_broken(value: bool) -> void:
 	_update_looks()
 
 func _update_looks() -> void:
-	#head.type = type # make another head file with some different controls from skull, replace broken with "variant" concept and make export work if the underlying control exists
+	head.type = type # make another head file with some different controls from skull, replace broken with "variant" concept and make export work if the underlying control exists
 	#head.broken = broken
-	# skull should load a different subclass of head, but I need all controls on base character head with empty implementation for missing controls
 	var type_name = ""
 	var broken_suffix = "_broken" if broken else ""
 	body_accessory.visible = false

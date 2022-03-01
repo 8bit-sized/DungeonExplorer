@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/kaykit/parts/CharacterHead.gd" type="Script" id=1]
 [ext_resource path="res://assets/kaykit/Glow.material" type="Material" id=2]
-[ext_resource path="res://assets/kaykit/parts/dungeon_knight_helmet.tres" type="ArrayMesh" id=3]
-[ext_resource path="res://assets/kaykit/parts/dungeon_knight_head_a.tres" type="ArrayMesh" id=4]
-[ext_resource path="res://assets/kaykit/parts/dungeon_knight_visor.tres" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/kaykit/parts/skeleton_archer_hood.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/kaykit/parts/skeleton_archer_mask.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/kaykit/parts/skeleton_jaw.tres" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/kaykit/parts/skeleton_skull.tres" type="ArrayMesh" id=6]
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "character_skeleton_archer_Cube7660"
@@ -23,14 +24,14 @@ surfaces/0 = {
 
 [node name="Head" type="Spatial"]
 script = ExtResource( 1 )
-type = 6
-variant = 1
+type = 2
 
 [node name="Main" type="MeshInstance" parent="."]
-mesh = ExtResource( 4 )
+mesh = ExtResource( 6 )
+blend_shapes/Angry = 0.0
+blend_shapes/Happy = 0.0
 material/0 = null
 material/1 = null
-material/2 = null
 
 [node name="Eyes" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429, 0.259 )
@@ -39,26 +40,27 @@ skeleton = NodePath("")
 material/0 = null
 
 [node name="MovingJoint" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.999982, 2.71946e-07, 0, -2.71946e-07, 0.999982, 0, 0.259, 0.082 )
+transform = Transform( 1, 0, 0, 0, 0.996594, 0.0822026, 0, -0.0822026, 0.996594, 0, 0.259, 0.082 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Moving" type="MeshInstance" parent="MovingJoint"]
-transform = Transform( 1, 0, 0, 0, 1, -1.7053e-13, 0, 1.7053e-13, 1, 0, -0.126706, -0.0282018 )
+transform = Transform( 1, 0, 0, 0, 1, -1.7053e-13, 0, 1.7053e-13, 1, 0, -0.127, -0.028 )
 mesh = ExtResource( 5 )
 skeleton = NodePath("")
 material/0 = null
-material/1 = null
 
 [node name="Accessory" type="Spatial" parent="."]
 
 [node name="Upper" type="MeshInstance" parent="Accessory"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.543, -0.013 )
+visible = false
 mesh = ExtResource( 3 )
 skeleton = NodePath("")
 material/0 = null
-material/1 = null
 
 [node name="Lower" type="MeshInstance" parent="Accessory"]
+visible = false
+mesh = ExtResource( 4 )
 skeleton = NodePath("")
+material/0 = null

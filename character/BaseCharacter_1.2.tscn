@@ -1,12 +1,12 @@
 [gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://character/BaseCharacter.gd" type="Script" id=1]
-[ext_resource path="res://assets/kaykit/parts/skeleton_archer_body.tres" type="ArrayMesh" id=2]
-[ext_resource path="res://assets/kaykit/parts/skeleton_archer_left_arm.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/kaykit/parts/dungeon_rogue_right_arm.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/kaykit/parts/dungeon_rogue_body.tres" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/PrototypePete.material" type="Material" id=4]
 [ext_resource path="res://assets/kaykit/parts/cape_mage.tres" type="ArrayMesh" id=5]
-[ext_resource path="res://assets/kaykit/parts/skeleton_archer_right_arm.tres" type="ArrayMesh" id=6]
-[ext_resource path="res://assets/kaykit/parts/Skull.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/kaykit/parts/dungeon_rogue_left_arm.tres" type="ArrayMesh" id=6]
+[ext_resource path="res://assets/kaykit/parts/CharacterHead.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "KayKit Animated Character_PrototypePete_body"
@@ -1606,7 +1606,7 @@ graph_offset = Vector2( 588.065, -74.4 )
 
 [node name="BaseCharacter" type="Spatial"]
 script = ExtResource( 1 )
-type = 0
+type = 4
 
 [node name="KayKit Animated Character" type="Spatial" parent="."]
 
@@ -1615,32 +1615,32 @@ bones/0/name = "Body"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 bones/0/enabled = true
-bones/0/bound_children = [  ]
+bones/0/bound_children = [ NodePath("Body") ]
 bones/1/name = "Head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711598, 0 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("Head") ]
 bones/2/name = "armLeft"
 bones/2/parent = 0
 bones/2/rest = Transform( -1.19209e-07, 0.471936, -0.881633, 2.5332e-07, -0.881633, -0.471936, -1, -2.5332e-07, -1.19209e-07, 0.14, 0.691598, -1.3027e-15 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("ArmLeft") ]
 bones/3/name = "handSlotLeft"
 bones/3/parent = 2
 bones/3/rest = Transform( 1.19209e-07, -1, 3.57628e-07, -0.471936, -3.57628e-07, -0.881633, 0.881633, -8.9407e-08, -0.471936, 1.04314e-15, 0.550922, 1.13735e-08 )
 bones/3/enabled = true
-bones/3/bound_children = [  ]
+bones/3/bound_children = [ NodePath("HandSlotLeft") ]
 bones/4/name = "armRight"
 bones/4/parent = 0
 bones/4/rest = Transform( -1.19209e-07, -0.471936, -0.881633, -2.23518e-07, -0.881633, 0.471936, -1, 2.23517e-07, -1.19209e-07, -0.14, 0.691598, 8.40813e-15 )
 bones/4/enabled = true
-bones/4/bound_children = [  ]
+bones/4/bound_children = [ NodePath("ArmRight") ]
 bones/5/name = "handSlotRight"
 bones/5/parent = 4
 bones/5/rest = Transform( 0, -1, -4.76837e-07, 0.471936, 3.57628e-07, -0.881633, 0.881633, -1.78814e-07, 0.471936, 3.33226e-15, 0.550922, -1.84059e-08 )
 bones/5/enabled = true
-bones/5/bound_children = [  ]
+bones/5/bound_children = [ NodePath("HandSlotRight") ]
 
 [node name="PrototypePete" type="MeshInstance" parent="KayKit Animated Character/Skeleton"]
 visible = false
@@ -1653,20 +1653,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711598, 0 )
 bone_name = "Head"
 
 [node name="Head" parent="KayKit Animated Character/Skeleton/Head" instance=ExtResource( 7 )]
+type = 4
 
 [node name="Body" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
 bone_name = "Body"
 
 [node name="Body" type="MeshInstance" parent="KayKit Animated Character/Skeleton/Body"]
 transform = Transform( 1, -4.29281e-10, -2.32831e-10, 1.41881e-09, 1, 0, 0, 0, 1, 0, 0, 0 )
-mesh = ExtResource( 2 )
+mesh = ExtResource( 3 )
 material/0 = null
 material/1 = null
 material/2 = null
 material/3 = null
-material/4 = null
-material/5 = null
-material/6 = null
 
 [node name="Offset" type="Position3D" parent="KayKit Animated Character/Skeleton/Body"]
 transform = Transform( 1, 2.77827e-19, 0, 3.18484e-19, 1, 0, 0, 0, 1, 0, 0.7, 0 )
@@ -1686,11 +1684,10 @@ bone_name = "armLeft"
 transform = Transform( 0.0288262, 0.0265131, -0.999232, 0.356995, -0.933993, -0.0144828, -0.933663, -0.356303, -0.0363886, -0.000857098, 0.0608011, -0.019068 )
 
 [node name="ArmLeft" type="MeshInstance" parent="KayKit Animated Character/Skeleton/ArmLeft/Offset"]
-mesh = ExtResource( 3 )
+mesh = ExtResource( 6 )
 material/0 = null
 material/1 = null
 material/2 = null
-material/3 = null
 
 [node name="HandSlotLeft" type="BoneAttachment" parent="KayKit Animated Character/Skeleton"]
 transform = Transform( -1, 2.92556e-08, 0, 0, 1.04171e-07, 1, -1.04757e-07, 1, -7.80337e-08, 0.4, 0.205887, -1.3956e-07 )
@@ -1705,7 +1702,7 @@ transform = Transform( -0.0314974, 0.0195307, -0.999315, -0.377658, -0.925925, -
 skeleton = NodePath("")
 
 [node name="ArmRight" type="MeshInstance" parent="KayKit Animated Character/Skeleton/ArmRight/Offset"]
-mesh = ExtResource( 6 )
+mesh = ExtResource( 2 )
 material/0 = null
 material/1 = null
 
