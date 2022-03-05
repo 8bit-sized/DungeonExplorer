@@ -24,7 +24,7 @@ surfaces/0 = {
 
 [node name="Head" type="Spatial"]
 script = ExtResource( 1 )
-type = 2
+type = 0
 
 [node name="Main" type="MeshInstance" parent="."]
 mesh = ExtResource( 6 )
@@ -54,13 +54,11 @@ material/0 = null
 [node name="Accessory" type="Spatial" parent="."]
 
 [node name="Upper" type="MeshInstance" parent="Accessory"]
-visible = false
 mesh = ExtResource( 3 )
 skeleton = NodePath("")
 material/0 = null
 
 [node name="Lower" type="MeshInstance" parent="Accessory"]
-visible = false
 mesh = ExtResource( 4 )
 skeleton = NodePath("")
 material/0 = null

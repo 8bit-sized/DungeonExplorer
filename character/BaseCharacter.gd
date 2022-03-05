@@ -26,17 +26,17 @@ var _velocity_candidate := 0.0
 var _velocity_count := 0
 
 func _ready() -> void:
+	yield(get_tree().root, "ready")
 	parts = [{"name": "body", "node": body},
 			{"name": "left_arm", "node": arm_left},
 			{"name": "right_arm", "node": arm_right}]
 	_update_looks()
 	_animation_tree.active = true # make sure this is active
-
-
+	
 # Looks Functions
 
 func set_type(value: int) -> void:
-	if value == type:
+	if value == type or parts.size() <= 0:
 		return
 	type = value
 	_update_looks()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://character/BaseCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://character/BaseCharacter_1.2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://character/SimplePlayer.gd" type="Script" id=2]
 [ext_resource path="res://character/SimpleCameraRig.gd" type="Script" id=3]
 
@@ -16,6 +16,7 @@ script = ExtResource( 2 )
 
 [node name="BaseCharacter" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+type = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.81828, 0.0047822 )

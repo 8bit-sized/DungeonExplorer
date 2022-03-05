@@ -46,7 +46,7 @@ func set_motion(value: float) -> void:
 	motion = value
 
 func set_type(value: int) -> void:
-	if value == type:
+	if value == type or parts.size() <= 0:
 		return
 	type = value
 	_update_looks()

@@ -13,6 +13,7 @@ extents = Vector3( 2.5287, 0.15372, 2.47184 )
 
 [node name="SimplePlayer" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.963464, 8 )
+air_jumps = 3
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 2 )
